@@ -1,0 +1,44 @@
+set scroll=1
+set scrolloff=3
+
+set t_Co=256
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+nnoremap ' `
+nnoremap ` '
+inoremap jk <Esc>
+inoremap kj <Esc>
+nmap gV `[v`]
+
+imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kJcw
+imap ]]] @@@<esc>hhkyWjl?@@@<cr>P/\@\@\@<cr>3s
+nmap ]]] i@@@<esc>hhkyWjl?@@@<cr>P/\@\@\@<cr>3s
+
+nnoremap <leader>w <C-W>
+nnoremap <Leader><Space> :noh<CR>
+nnoremap <Leader>kws :%s/\s\+$//<CR>
+nnoremap <Leader>s :set nolist!<CR>
+nnoremap <leader>n :set number!<CR>kk
+nnoremap <leader>ls :buffers<CR>:buffer<Space>
+
+nnoremap <silent> <tab> :bn<cr>
+nnoremap <silent> <s-tab> :bp<cr>
+
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 expandtab
