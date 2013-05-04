@@ -16,11 +16,12 @@ alias reload='. ~/.zshrc'
 
 alias px='ps aux'
 
+alias ls='ls --color=tty -F'
+alias la='ls -a'
+alias lla='ll -a'
 alias sa='ssh-add'
 alias salock='ssh-add -x'
 alias saunlock='ssh-add -X'
-#alias ....='cd ../../..'
-#alias .....='cd ../../../..'
 
 alias gopen='xdg-open'
 
@@ -152,6 +153,5 @@ alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD`
 if [ -f /usr/local/share/chruby/chruby.sh ]; then
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
-  chruby 2.0.0-p0
 fi
 
