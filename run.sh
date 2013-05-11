@@ -17,6 +17,9 @@ link_files() {
   link_file $1/config.zsh ~/.oh-my-zsh/custom/config.zsh
   link_file $1/gemrc ~/.gemrc
   link_file $1/gitconfig ~/.gitconfig
+  link_file $1/inputrc ~/.inputrc
+  link_file $1/pryrc ~/.pryrc
+  link_file $1/psqlrc ~/.psqlrc
   link_file $1/tmux.conf ~/.tmux.conf
   link_file $1/vimrc.before ~/.vimrc.before
   link_file $1/vimrc.after ~/.vimrc.after
@@ -31,6 +34,9 @@ unlink_files() {
   unlink_file ~/.oh-my-zsh/custom/config.zsh
   unlink_file ~/.gemrc
   unlink_file ~/.gitconfig
+  unlink_file ~/.pryrc
+  unlink_file ~/.psqlrc
+  unlink_file ~/.inputrc
   unlink_file ~/.tmux.conf
   unlink_file ~/.vimrc.before
   unlink_file ~/.vimrc.after

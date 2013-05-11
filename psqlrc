@@ -1,0 +1,17 @@
+\encoding unicode
+\echo Client encoding is :ENCODING
+
+\set QUIET on
+
+\pset null 'NULL'
+
+\set HISTFILE ~/.psql_history/:DBNAME
+\set HISTCONTROL ignoredups
+\set HISTSIZE 2000
+
+\pset pager off
+\timing
+
+\set PROMPT1 '%[%033[32;1m%]%n@%m:%>/%/%[%033[0m%]%# '
+
+\unset QUIET

@@ -1,0 +1,41 @@
+set editing-mode vi
+
+set bind-tty-special-chars off
+
+# completion options
+set page-completions on
+set completion-ignore-case on
+set completion-query-items 200
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set visible-stats on
+set mark-symlinked-directories on
+set expand-tilde off
+
+# useful stuff for utf-8
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+$if mode=vi
+  set keymap vi-command
+  "gg": beginning-of-history
+  "G": end-of-history
+  "\e[H" : beginning-of-line     # home
+  "\e[1~": beginning-of-line     # home
+  "\e[F" : end-of-line           # end
+  "\e[4~": end-of-line           # end
+  "\e[3~": delete-char           # delete
+
+  set keymap vi-insert
+  Control-a: beginning-of-line
+  Control-b: backward-char
+  Control-d: delete-char
+  Control-e: end-of-line
+  Control-f: forward-char
+  Control-k: kill-line
+  Control-w: backward-kill-word
+  Control-n: history-search-forward
+  Control-p: history-search-backward
+$endif
