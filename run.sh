@@ -60,16 +60,13 @@ case "$1" in
     else
       echo 'janus already installed, skip ...'
     fi
-    if [ ! -d ~/.janus ]; then
-      mkdir -p ~/.janus
-      git clone git://github.com/sjbach/lusty.git ~/.janus/lusty
-      git clone git://github.com/godlygeek/tabular ~/.janus/tabular
-      git clone git://github.com/nathanaelkane/vim-indent-guides ~/.janus/vim-indent-guides
-      git clone git://github.com/Lokaltog/vim-powerline ~/.janus/vim-powerline
-      git clone git://github.com/tpope/vim-rails ~/.janus/vim-rails
-    else
-      echo 'janus custom plugins already installed, skip ...'
-    fi
+    [ ! -d ~/.janus ] && mkdir -p ~/.janus
+    [ ! -d ~/.janus/lusty ] && git clone git://github.com/sjbach/lusty.git ~/.janus/lusty
+    [ ! -d ~/.janus/tabular ] && git clone git://github.com/godlygeek/tabular ~/.janus/tabular
+    [ ! -d ~/.janus/vim-indent-guides ] && git clone git://github.com/nathanaelkane/vim-indent-guides ~/.janus/vim-indent-guides
+    [ ! -d ~/.janus/vim-powerline ] && git clone git://github.com/Lokaltog/vim-powerline ~/.janus/vim-powerline
+    [ ! -d ~/.janus/vim-rails ] && git clone git://github.com/tpope/vim-rails ~/.janus/vim-rails
+    [ ! -d ~/.janus/slimux ] && git clone git://github.com/epeli/slimux.git ~/.janus/slimux
 
     link_files $SCRIPT_DIR
     echo "installation completed"
