@@ -73,6 +73,7 @@ case "$1" in
     ;;
 
   relink)
+    unlink_files $SCRIPT_DIR
     link_files $SCRIPT_DIR
     echo "configuration symlinks updated"
     ;;
