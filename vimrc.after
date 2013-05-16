@@ -28,8 +28,10 @@ inoremap kj <Esc>
 nmap gV `[v`]
 
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kJcw
-imap ]]] @@@<esc>hhkyWjl?@@@<cr>P/\@\@\@<cr>3s
-nmap ]]] i@@@<esc>hhkyWjl?@@@<cr>P/\@\@\@<cr>3s
+imap ]]] @@@<esc>hhkyWjl?@@@<cr>P/@@@<cr>3s
+nmap ]]] i@@@<esc>hhkyWjl?@@@<cr>P/@@@<cr>3s
+imap [[[ @@@<esc>hhjyWkl?@@@<cr>P/@@@<cr>3s
+nmap [[[ i@@@<esc>hhjyWkl?@@@<cr>P/@@@<cr>3s
 
 nnoremap <leader>w <C-W>
 nnoremap <Leader><Space> :noh<CR>
