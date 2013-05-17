@@ -6,6 +6,9 @@ let g:solarized_termcolors=256
 set background=light
 colorscheme solarized
 
+let NERDSpaceDelims = 1
+let NERDRemoveExtraSpaces = 1
+
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
 
 nmap <Leader>a& :Tabularize /&<CR>
@@ -20,6 +23,10 @@ nmap <Leader>a, :Tabularize /,<CR>
 vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+nmap <Leader>rb :SlimuxShellRun if [ -x `which spring` ]; then spring testunit <C-R>=expand("%:f")<CR>; else ruby -Itest <C-R>=expand("%:f")<CR>; fi<CR><CR>
+nmap <Leader>rl :SlimuxShellLast<CR>
+nmap <Leader>rc :SlimuxShellConfigure<CR>
 
 nnoremap ' `
 nnoremap ` '
