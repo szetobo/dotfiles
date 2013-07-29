@@ -24,7 +24,8 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-nmap <Leader>rb :SlimuxShellRun if [ -x `which spring` ]; then spring testunit <C-R>=expand("%:f")<CR>; else ruby -Itest <C-R>=expand("%:f")<CR>; fi<CR><CR>
+" nmap <Leader>rb :SlimuxShellRun if [[ -x `which spring` ]]; then bundle exec spring testunit <C-R>=expand("%:f")<CR>; else ruby -Itest <C-R>=expand("%:f")<CR>; fi<CR><CR>
+nmap <Leader>rb :SlimuxShellRun ruby -Itest <C-R>=expand("%:f")<CR><CR>
 nmap <Leader>rl :SlimuxShellLast<CR>
 nmap <Leader>rc :SlimuxShellConfigure<CR>
 

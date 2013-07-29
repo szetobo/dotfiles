@@ -59,6 +59,12 @@ tx() {
   fi
   tmux attach -t work;
 }
+txtest() {
+  if ! tmux has-session -t test; then
+    tmux new -s test -d;
+  fi
+  tmux attach -t test;
+}
 txpair() {
   if ! tmux -S /tmp/pair has-session -t pair 2> /dev/null; then
     tmux -S /tmp/pair new -s pair -d;

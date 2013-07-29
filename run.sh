@@ -64,7 +64,7 @@ case "$1" in
     [ ! -d ~/.janus/lusty ] && git clone git://github.com/sjbach/lusty.git ~/.janus/lusty
     [ ! -d ~/.janus/tabular ] && git clone git://github.com/godlygeek/tabular ~/.janus/tabular
     [ ! -d ~/.janus/vim-indent-guides ] && git clone git://github.com/nathanaelkane/vim-indent-guides ~/.janus/vim-indent-guides
-    [ ! -d ~/.janus/vim-powerline ] && git clone git://github.com/Lokaltog/vim-powerline ~/.janus/vim-powerline
+    [ ! -d ~/.janus/vim-airline ] && git clone git://github.com/bling/vim-airline ~/.janus/vim-airline
     [ ! -d ~/.janus/vim-rails ] && git clone git://github.com/tpope/vim-rails ~/.janus/vim-rails
     [ ! -d ~/.janus/slimux ] && git clone git://github.com/epeli/slimux.git ~/.janus/slimux
 

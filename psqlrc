@@ -12,6 +12,6 @@
 \pset pager off
 \timing
 
-\set PROMPT1 '%[%033[32;1m%]%n@%m:%>/%/%[%033[0m%]%# '
+-- \set PROMPT1 '%[%033[32;1m%]%n@%m:%>/%/%[%033[0m%]%# '
 
 \unset QUIET

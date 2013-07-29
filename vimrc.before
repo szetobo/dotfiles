@@ -2,7 +2,18 @@ set hidden
 
 let mapleader = ','
 
-let g:Powerline_symbols = 'unicode'
+let g:airline_powerline_fonts=0
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_linecolumn_prefix = '␊ '
+let g:airline_linecolumn_prefix = '␤ '
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_branch_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+let g:airline_paste_symbol = 'Þ'
+let g:airline_paste_symbol = '∥'
 
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 2
