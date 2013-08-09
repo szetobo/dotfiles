@@ -46,12 +46,13 @@ if [ ! -d /usr/local/share/chruby ]; then
 fi
 
 #
-# install ruby-build
+# install ruby-install
 #
-if [ ! -x /usr/local/bin/ruby-build ]; then
-  git clone https://github.com/sstephenson/ruby-build.git
-  cd ruby-build
-  ./install.sh
+if [ ! -x /usr/local/bin/ruby-install ]; then
+  wget -O /tmp/ruby-install-0.3.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.3.0.tar.gz
+  tar -C /tmp -xzvf /tmp/ruby-install-0.3.0.tar.gz
+  cd /tmp/ruby-install-0.3.0/
+  make install
 fi
 
 
