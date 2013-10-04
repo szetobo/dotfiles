@@ -18,7 +18,7 @@ if (uname -a | grep -i ubuntu > /dev/null); then
   apt-get update
 
   # install required packages
-  apt-get -y install build-essential git-core tig wget curl htop \
+  apt-get -y install build-essential git-core tig wget curl htop tmux \
     rake exuberant-ctags vim-gtk ack-grep zsh
   apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
     libxml2 libxml2-dev libffi-dev libyaml-dev libxslt-dev autoconf \
@@ -28,8 +28,8 @@ if (uname -a | grep -i ubuntu > /dev/null); then
 elif (uname -a | grep -i arch > /dev/null); then
   # update package list
   pacman -Sy
-  pacman --noconfirm --needed -S base-devel git tig wget curl htop \
-    ruby vim-nox ctags ack zsh the_silver_searcher
+  pacman --noconfirm --needed -S base-devel git tig wget curl htop tmux \
+    ruby gvim ctags ack zsh the_silver_searcher
   pacman --noconfirm --needed -S bison openssl libxslt libxml2 libyaml libffi \
     autoconf readline zlib
 
@@ -39,9 +39,9 @@ fi
 # install chruby
 #
 if [ ! -d /usr/local/share/chruby ]; then
-  wget -O /tmp/chruby-0.3.4.tar.gz https://github.com/postmodern/chruby/archive/v0.3.4.tar.gz
-  tar -C /tmp -xvzf /tmp/chruby-0.3.4.tar.gz
-  cd /tmp/chruby-0.3.4
+  wget -O /tmp/chruby-0.3.7.tar.gz https://github.com/postmodern/chruby/archive/v0.3.7.tar.gz
+  tar -C /tmp -xvzf /tmp/chruby-0.3.7.tar.gz
+  cd /tmp/chruby-0.3.7
   make install
 fi
 

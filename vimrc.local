@@ -1,0 +1,50 @@
+set hidden
+set hlsearch
+set nowrap
+set cursorline
+
+set scroll=1
+set scrolloff=3
+
+" keyboard shortcuts
+nnoremap ' `
+nnoremap ` '
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+nnoremap <silent> <tab> :bn<cr>
+nnoremap <silent> <s-tab> :bp<cr>
+
+nnoremap <leader>w <C-W>
+nnoremap <leader>= <C-W>=
+nnoremap <leader>s :set nolist! nolist?<CR>
+nnoremap <leader>n :set number! number?<CR>
+nnoremap <Leader>hs :set hlsearch! hlsearch?<CR>
+nnoremap <leader>tw :set invwrap wrap?<CR>
+nnoremap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+map <Down> gj
+map <Up> gk
+
+nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
+imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+
+nmap <Leader>rb :SlimuxShellRun ruby -Itest <C-R>=expand("%:f")<CR><CR>
+nmap <Leader>rl :SlimuxShellLast<CR>
+nmap <Leader>rc :SlimuxShellConfigure<CR>
+
+" After whitespace, insert the current directory into a command-line path
+cnoremap <expr> <C-P> getcmdline()[getcmdpos()-2] ==# ' ' ? expand('%:p:h') : "\<C-P>"
+
+" plugin settings
+let g:tagbar_autofocus=1
+let g:tmux_navigator_no_mappings=1
+
+" gui settings
+set t_Co=256
+colorscheme solarized
+

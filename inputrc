@@ -24,8 +24,10 @@ $if mode=vi
   "G": end-of-history
   "\e[H" : beginning-of-line     # home
   "\e[1~": beginning-of-line     # home
+  "\e[7~": beginning-of-line     # home
   "\e[F" : end-of-line           # end
   "\e[4~": end-of-line           # end
+  "\e[8~": end-of-line           # end
   "\e[3~": delete-char           # delete
 
   set keymap vi-insert

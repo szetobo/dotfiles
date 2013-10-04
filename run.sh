@@ -21,12 +21,12 @@ link_files() {
   link_file $1/pryrc ~/.pryrc
   link_file $1/psqlrc ~/.psqlrc
   link_file $1/tmux.conf ~/.tmux.conf
-  link_file $1/vimrc.before ~/.vimrc.before
-  link_file $1/vimrc.after ~/.vimrc.after
+  link_file $1/vimrc.local ~/.vimrc.local
+  link_file $1/vimrc.bundles.local ~/.vimrc.bundles.local
 
-  [ ! -f ~/.zshrc ] && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-  [ ! -L ~/.vimrc ] && ln -s ~/.vim/janus/vim/vimrc ~/.vimrc
-  [ ! -L ~/.gvimrc ] && ln -s ~/.vim/janus/vim/gvimrc ~/.gvimrc
+  link_file ~/.maximum-awesome/vim ~/.vim
+  link_file ~/.maximum-awesome/vimrc ~/.vimrc
+  link_file ~/.maximum-awesome/vimrc.bundles ~/.vimrc.bundles
 }
 
 unlink_files() {
@@ -34,12 +34,16 @@ unlink_files() {
   unlink_file ~/.oh-my-zsh/custom/config.zsh
   unlink_file ~/.gemrc
   unlink_file ~/.gitconfig
+  unlink_file ~/.inputrc
   unlink_file ~/.pryrc
   unlink_file ~/.psqlrc
-  unlink_file ~/.inputrc
   unlink_file ~/.tmux.conf
-  unlink_file ~/.vimrc.before
-  unlink_file ~/.vimrc.after
+  unlink_file ~/.vimrc.local
+  unlink_file ~/.vimrc.bundles.local
+
+  unlink_file ~/.vim
+  unlink_file ~/.vimrc
+  unlink_file ~/.vimrc.bundles
 }
 
 
@@ -47,28 +51,28 @@ SCRIPT_DIR=`readlink -f $(dirname $0)`
 case "$1" in
   install)
     # install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
+    if [ -d ~/.oh-my-zsh ]; then
+      echo 'oh-my-zsh already installed, skip ...'
+    else
       git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
       [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
-    else
-      echo 'oh-my-zsh already installed, skip ...'
+      cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
     fi
 
-    # install janus
-    if [ ! -d ~/.vim/janus ]; then
-      wget -O - https://raw.github.com/carlhuda/janus/master/bootstrap.sh | bash
+    # install maximum-awesome
+    if [ -d ~/.maximum-awesome ]; then
+      echo 'maximum-awesome already installed, skip ...'
     else
-      echo 'janus already installed, skip ...'
+      git clone git://github.com/square/maximum-awesome.git ~/.maximum-awesome
+      git clone git://github.com/gmarik/vundle.git ~/.maximum-awesome/vim/bundle/vundle
+      git clone git://github.com/altercation/vim-colors-solarized.git ~/.maximum-awesome/vim/bundle/vim-colors-solarized
     fi
-    [ ! -d ~/.janus ] && mkdir -p ~/.janus
-    [ ! -d ~/.janus/lusty ] && git clone git://github.com/sjbach/lusty.git ~/.janus/lusty
-    [ ! -d ~/.janus/tabular ] && git clone git://github.com/godlygeek/tabular ~/.janus/tabular
-    [ ! -d ~/.janus/vim-indent-guides ] && git clone git://github.com/nathanaelkane/vim-indent-guides ~/.janus/vim-indent-guides
-    [ ! -d ~/.janus/vim-airline ] && git clone git://github.com/bling/vim-airline ~/.janus/vim-airline
-    [ ! -d ~/.janus/vim-rails ] && git clone git://github.com/tpope/vim-rails ~/.janus/vim-rails
-    [ ! -d ~/.janus/slimux ] && git clone git://github.com/epeli/slimux.git ~/.janus/slimux
 
     link_files $SCRIPT_DIR
+
+    # refresh vim bundle plugins
+    sh -c 'vim +BundleInstall +qall'
+
     echo "installation completed"
     ;;
 
@@ -89,11 +93,8 @@ case "$1" in
     mv -f ~/.zshrc $SCRIPT_DIR/backup/
     [ -f ~/.zshrc.backup ] && mv -f ~/.zshrc.backup ~/.zshrc
 
-    # move janus to backup directory
-    [ -d ~/.vim/janus ] && mv ~/.vim $SCRIPT_DIR/backup/
-    [ -d ~/.janus ] && mv ~/.janus $SCRIPT_DIR/backup/
-    unlink_file ~/.vimrc
-    unlink_file ~/.gvimrc
+    # move maximum-awesome to backup directory
+    [ -d ~/.maximum-awesome ] && mv ~/.maximum-awesome $SCRIPT_DIR/backup/
 
     unlink_files $SCRIPT_DIR
     echo "remove $SCRIPT_DIR to completely uninstall everything"
