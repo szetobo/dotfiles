@@ -23,7 +23,7 @@ alias sa='ssh-add'
 alias salock='ssh-add -x'
 alias saunlock='ssh-add -X'
 
-alias gopen='xdg-open'
+alias open='xdg-open'
 
 alias ack='ag'
 alias ackr='ack --ruby'
@@ -150,8 +150,8 @@ export RUBY_HEAP_MIN_SLOTS=40000
 #
 alias lgc='for f in $(ls log/*.log); do cat /dev/null >! $f; done'
 alias kuc='[[ -f tmp/pids/unicorn.pid ]] && kill `cat tmp/pids/unicorn.pid`'
-alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` _run-with-bundler unicorn -c $PWD/config/unicorn.rb -D'
-alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` _run-with-bundler puma -C $PWD/config/puma.rb -d'
+alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec unicorn -c $PWD/config/unicorn.rb -D'
+alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
 alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
 
 
