@@ -1,3 +1,5 @@
 Bundle 'maciakl/vim-neatstatus'
 Bundle 'epeli/slimux'
+Bundle 'stephpy/vim-yaml'
+Bundle 'fholgado/minibufexpl.vim'
 
