@@ -48,7 +48,7 @@ let g:tmux_navigator_no_mappings=1
 " gui settings
 set t_Co=256
 colorscheme solarized
-if $TERM =~ "rxvt-unicode"
+if $COLORTERM =~ "rxvt"
   set background=dark
 endif
 
