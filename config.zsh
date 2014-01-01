@@ -55,7 +55,7 @@ alias tmux='tmux -2'
 tx() {
   if ! tmux has-session -t work; then
     tmux new -s work -d;
-    tmux splitw -v -p 80 -t work;
+    tmux splitw -v -p 70 -t work;
   fi
   tmux attach -t work;
 }
@@ -138,9 +138,9 @@ alias vi='vim'
 #
 # ruby 1.9.3 performance patch settings, not sure if it has any effect on ruby 2.0
 #
-export RUBY_GC_MALLOC_LIMIT=1000000000
-export RUBY_HEAP_FREE_MIN=500000
-export RUBY_HEAP_MIN_SLOTS=40000
+# export RUBY_GC_MALLOC_LIMIT=1000000000
+# export RUBY_HEAP_FREE_MIN=500000
+# export RUBY_HEAP_MIN_SLOTS=40000
 # export RUBY_HEAP_SLOTS_INCREMENT=1000000
 # export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 
