@@ -30,20 +30,24 @@ alias ackr='ack --ruby'
 alias acki='ack -i'
 alias ackri='ack --ruby -i'
 
+alias rdms='rake db:migrate:status'
+alias rtp='rake test:prepare'
+alias rtc='rake temp:create'
+
 alias -g G='| ack'
 alias -g P='| less'
 alias -g WC='| wc -l'
+alias -g RE='RESCUE=1'
 
+alias t='todo.sh -d ~/.todo.cfg'
 
 #
 # git config and aliases
 #
 alias gcl='git clone'
 alias gls='git ls-files'
-alias gdf='git diff'
 alias gsa='git stash'
-alias glo='git log'
-alias glgp='git log -p'
+alias gaa='git add -A'
 
 alias gpa="git co master && git pull && git remote prune origin"
 
@@ -51,7 +55,6 @@ alias gpa="git co master && git pull && git remote prune origin"
 #
 # tmux alias
 #
-alias tmux='tmux -2'
 tx() {
   if ! tmux has-session -t work; then
     tmux new -s work -d;
@@ -66,11 +69,12 @@ txtest() {
   tmux attach -t test;
 }
 txpair() {
-  if ! tmux -S /tmp/pair has-session -t pair 2> /dev/null; then
-    tmux -S /tmp/pair new -s pair -d;
-    tmux -S /tmp/pair send-keys -t pair:1.1 "chmod 1777 /tmp/pair" C-m "clear" C-m;
+  SOCKET=/home/share/tmux-pair/default
+  if ! tmux -S $SOCKET has-session -t pair 2> /dev/null; then
+    tmux -S $SOCKET new -s pair -d;
+    # tmux -S $SOCKET send-keys -t pair:1.1 "chmod 1777 " $SOCKET C-m "clear" C-m;
   fi
-  tmux -S /tmp/pair attach -t pair;
+  tmux -S $SOCKET attach -t pair;
 }
 
 
@@ -132,7 +136,9 @@ export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
 
-alias vi='vim'
+alias v='vim'
+alias vi='v'
+alias vt='vim -c :CtrlP'
 
 
 #

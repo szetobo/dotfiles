@@ -2,4 +2,6 @@ Bundle 'maciakl/vim-neatstatus'
 Bundle 'epeli/slimux'
 Bundle 'stephpy/vim-yaml'
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'flazz/vim-colorschemes'
 
