@@ -41,6 +41,7 @@ alias -g RE='RESCUE=1'
 
 alias t='todo.sh -d ~/.todo.cfg'
 
+
 #
 # git config and aliases
 #
@@ -58,7 +59,8 @@ alias gpa="git co master && git pull && git remote prune origin"
 tx() {
   if ! tmux has-session -t work; then
     tmux new -s work -d;
-    tmux splitw -v -p 70 -t work;
+    tmux splitw -h -p 40 -t work;
+    tmux select-p -t 1;
   fi
   tmux attach -t work;
 }
@@ -140,6 +142,9 @@ alias v='vim'
 alias vi='v'
 alias vt='vim -c :CtrlP'
 
+alias vimrc='v ~/.vimrc.local'
+alias vcfg='v ~/.oh-my-zsh/custom/config.zsh'
+
 
 #
 # ruby 1.9.3 performance patch settings, not sure if it has any effect on ruby 2.0
@@ -162,10 +167,10 @@ alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
 
 
 #
-# chruby
+# chruby (supersede by oh-my-zsh's chruby plugin)
 #
-if [ -f /usr/local/share/chruby/chruby.sh ]; then
-  source /usr/local/share/chruby/chruby.sh
-  source /usr/local/share/chruby/auto.sh
-fi
+# if [ -f /usr/local/share/chruby/chruby.sh ]; then
+#   source /usr/local/share/chruby/chruby.sh
+#   source /usr/local/share/chruby/auto.sh
+# fi
 

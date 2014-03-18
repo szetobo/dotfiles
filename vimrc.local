@@ -3,6 +3,10 @@ set hlsearch
 set nowrap
 set cursorline
 set nostartofline
+if v:version > 702
+  set relativenumber
+
+endif
 
 set scroll=1
 set scrolloff=3
@@ -48,14 +52,18 @@ cnoremap <expr> <C-P> getcmdline()[getcmdpos()-2] ==# ' ' ? expand('%:p:h') : "\
 
 " plugin settings
 let g:tagbar_autofocus=1
-" let g:tmux_navigator_no_mappings=1
+let g:tagbar_autoclose=1
+let g:NERDTreeQuitOnOpen=1
+let g:gitgutter_enabled=1
 
 " gui settings
 set t_Co=256
-colorscheme solarized
-if $COLORTERM =~ "rxvt"
-  set background=dark
-endif
+colorscheme badwolf
+" colorscheme jellybeans
+" colorscheme solarized
+" if $COLORTERM =~ "rxvt"
+"   set background=dark
+" endif
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
