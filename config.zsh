@@ -143,6 +143,7 @@ alias vi='v'
 alias vt='vim -c :CtrlP'
 
 alias vimrc='v ~/.vimrc.local'
+alias vundle='v ~/.vimrc.bundles.local'
 alias vcfg='v ~/.oh-my-zsh/custom/config.zsh'
 
 

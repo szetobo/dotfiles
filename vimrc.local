@@ -1,3 +1,6 @@
+" vim:fdm=marker:
+
+" Editor settings {{{
 set hidden
 set hlsearch
 set nowrap
@@ -5,13 +8,21 @@ set cursorline
 set nostartofline
 if v:version > 702
   set relativenumber
-
 endif
 
 set scroll=1
 set scrolloff=3
+set ttyfast
+set lazyredraw
 
-" keyboard shortcuts
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+" }}}
+
+" Keyboard shortcuts {{{
 nmap \ ,
 nnoremap ' `
 nnoremap ` '
@@ -47,31 +58,35 @@ nmap <Leader>rc :SlimuxShellConfigure<CR>
 vmap <Enter>   <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
 
+nnoremap <leader>u :GundoToggle<CR>
+
 " After whitespace, insert the current directory into a command-line path
 cnoremap <expr> <C-P> getcmdline()[getcmdpos()-2] ==# ' ' ? expand('%:p:h') : "\<C-P>"
+" }}}
 
-" plugin settings
+" Plugin settings {{{
 let g:tagbar_autofocus=1
 let g:tagbar_autoclose=1
 let g:NERDTreeQuitOnOpen=1
 let g:gitgutter_enabled=1
+let g:gundo_close_on_revert=1
+let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+let g:ctrlp_cmd='CtrlPMixed'
+let g:ycm_collect_identifiers_from_comments_and_strings=1
+" }}}
 
-" gui settings
+" GUI settings {{{
 set t_Co=256
-colorscheme badwolf
+colorscheme molokai
 " colorscheme jellybeans
 " colorscheme solarized
 " if $COLORTERM =~ "rxvt"
 "   set background=dark
 " endif
+" }}}
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" share vim settings
+" Share VIM settings {{{
 if $TMUX =~ "pair"
   source ~/.vimrc.share
 endif
+" }}}
