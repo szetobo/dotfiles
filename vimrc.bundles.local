@@ -6,4 +6,6 @@ Bundle 'junegunn/vim-easy-align'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'MattesGroeger/vim-bookmarks'
+Bundle 'sjl/gundo.vim'
+Bundle 'Valloric/YouCompleteMe'
 
