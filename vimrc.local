@@ -13,7 +13,7 @@ endif
 set scroll=1
 set scrolloff=3
 set ttyfast
-set lazyredraw
+" set lazyredraw
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
