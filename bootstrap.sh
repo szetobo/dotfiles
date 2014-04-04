@@ -12,18 +12,28 @@ if (uname -a | grep -i ubuntu > /dev/null); then
   apt-get update
   # apt-get -y upgrade
 
-  # get latest git-core repository
   apt-get -y install python-software-properties
-  add-apt-repository -y ppa:git-core/ppa || add-apt-repository ppa:git-core/ppa
+
+  # get latest repository
+  add-apt-repository -y ppa:git-core/ppa
+  add-apt-repository -y ppa:fcwu-tw/ppa
+  add-apt-repository -y ppa:kalakris/tmux
+
+  # get latest postgres repository
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/postgresql.list
+
   apt-get update
 
   # install required packages
   apt-get -y install build-essential git-core tig wget curl htop tmux \
     rake exuberant-ctags vim-gtk ack-grep zsh
+  apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3
   apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
     libxml2 libxml2-dev libffi-dev libyaml-dev libxslt-dev autoconf \
     libc6-dev libreadline6-dev zlib1g zlib1g-dev \
     ruby-dev libopenssl-ruby
+  apt-get -y install cmake python-dev     # dependency of YouCompleteMe vim plugin
 
 elif (uname -a | grep -i arch > /dev/null); then
   # update package list
@@ -38,26 +48,33 @@ fi
 #
 # install chruby
 #
-if [ ! -d /usr/local/share/chruby ]; then
-  wget -O /tmp/chruby-0.3.7.tar.gz https://github.com/postmodern/chruby/archive/v0.3.7.tar.gz
-  tar -C /tmp -xvzf /tmp/chruby-0.3.7.tar.gz
-  cd /tmp/chruby-0.3.7
-  make install
-fi
+# if [ ! -d /usr/local/share/chruby ]; then
+#   wget -O /tmp/chruby-0.3.7.tar.gz https://github.com/postmodern/chruby/archive/v0.3.7.tar.gz
+#   tar -C /tmp -xvzf /tmp/chruby-0.3.7.tar.gz
+#   cd /tmp/chruby-0.3.7
+#   make install
+# fi
+git clone git://github.com/postmodern/chruby.git ~/src/chruby
+cd ~/src/chruby
+make install
 
 #
 # install ruby-install
 #
-if [ ! -x /usr/local/bin/ruby-install ]; then
-  wget -O /tmp/ruby-install-0.3.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.3.0.tar.gz
-  tar -C /tmp -xzvf /tmp/ruby-install-0.3.0.tar.gz
-  cd /tmp/ruby-install-0.3.0/
-  make install
-fi
+# if [ ! -x /usr/local/bin/ruby-install ]; then
+#   wget -O /tmp/ruby-install-0.3.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.3.0.tar.gz
+#   tar -C /tmp -xzvf /tmp/ruby-install-0.3.0.tar.gz
+#   cd /tmp/ruby-install-0.3.0/
+#   make install
+# fi
+git clone git://github.com/postmodern/ruby-install.git ~/src/ruby-install
+cd ~/src/ruby-install
+make install
 
 
 if [[ $1 == "vagrant" ]]; then
   su -l -c '[ ! -d ~/.dotfiles ] && git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles; ~/.dotfiles/run.sh install' vagrant
+  chsh -s /bin/zsh vagrant
 fi
 
 exit 0
