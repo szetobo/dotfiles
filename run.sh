@@ -58,6 +58,7 @@ case "$1" in
       [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
       cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
     fi
+    sed -i "s/^plugins=\(.*\)/plugins=\(bundler chruby git git-extra rails ruby ssh-agent vi-mode\)/g" ~/.zshrc
 
     # install maximum-awesome
     if [ -d ~/.maximum-awesome ]; then
