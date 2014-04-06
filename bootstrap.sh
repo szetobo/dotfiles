@@ -27,7 +27,7 @@ if (uname -a | grep -i ubuntu > /dev/null); then
 
   # install required packages
   apt-get -y install build-essential git-core tig wget curl htop tmux \
-    rake exuberant-ctags vim-gtk ack-grep zsh
+    rake exuberant-ctags vim-gtk silversearcher-ag zsh
   apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3
   apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
     libxml2 libxml2-dev libffi-dev libyaml-dev libxslt-dev autoconf \
