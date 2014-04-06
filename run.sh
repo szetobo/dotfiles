@@ -47,7 +47,11 @@ unlink_files() {
 }
 
 
-SCRIPT_DIR=`readlink -f $(dirname $0)`
+if (uname -a | grep -i darwin > /dev/null); then
+  SCRIPT_DIR=`cd -P -- "$(dirname -- $0)" && pwd -P`
+else
+  SCRIPT_DIR=`readlink -f $(dirname $0)`
+fi
 case "$1" in
   install)
     # install oh-my-zsh

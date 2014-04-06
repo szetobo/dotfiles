@@ -16,7 +16,11 @@ alias reload='. ~/.zshrc'
 
 alias px='ps aux'
 
-alias ls='ls --color=tty -F'
+if (uname -a | grep -i darwin > /dev/null); then
+  alias ls='ls -FG'
+else
+  alias ls='ls --color=tty -F'
+fi
 alias la='ls -a'
 alias lla='ll -a'
 alias sa='ssh-add'
@@ -165,6 +169,16 @@ alias kuc='[[ -f tmp/pids/unicorn.pid ]] && kill `cat tmp/pids/unicorn.pid`'
 alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec unicorn -c $PWD/config/unicorn.rb -D'
 alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
 alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
+
+
+#
+# development vm aliases
+#
+VM_DIR='vagrant/precise64'
+alias va=vagrant
+alias vmup='cd ~/$VM_DIR; va up'
+alias vmsp='cd ~/$VM_DIR; va suspend'
+alias vm='cd ~/$VM_DIR; va ssh'
 
 
 #
