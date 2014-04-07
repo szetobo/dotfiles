@@ -6,6 +6,11 @@
 #
 
 if (uname -a | grep -i ubuntu > /dev/null); then
+  # setup proper locale
+  locale-gen
+  update-locale LC_ALL=en_HK.UTF8 LC_CTYPE=en_HK.UTF-8
+  export LC_ALL=en_HK.UTF8
+
   # update package list
   sed -i 's/us\.archive\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
   sed -i 's/security\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
@@ -73,10 +78,14 @@ make install
 
 
 if [[ $1 == "vagrant" ]]; then
+  # set local timezone
+  cp /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime
+
+  # install personalize development environment
   su -l -c '[ ! -d ~/.dotfiles ] && git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles; ~/.dotfiles/run.sh install' vagrant
   chsh -s /bin/zsh vagrant
 
-  # install phantomjs
+  # install phantomjs, dependency of rails integration test
   cd /tmp
   wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
   tar xvjf phantomjs-1.9.7-linux-x86_64.tar.bz2
