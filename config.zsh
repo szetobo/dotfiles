@@ -168,7 +168,7 @@ alias lgc='for f in $(ls log/*.log); do cat /dev/null >! $f; done'
 alias kuc='[[ -f tmp/pids/unicorn.pid ]] && kill `cat tmp/pids/unicorn.pid`'
 alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec unicorn -c $PWD/config/unicorn.rb -D'
 alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
-alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
+alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
 
 
 #
