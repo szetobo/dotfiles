@@ -79,7 +79,8 @@ make install
 
 if [[ $1 == "vagrant" ]]; then
   # set local timezone
-  cp /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime
+  echo 'Asic/Hong_Kong' | tee /etc/timezone
+  dpkg-reconfigure --frontend noninteractive tzdata
 
   # install personalize development environment
   su -l -c '[ ! -d ~/.dotfiles ] && git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles; ~/.dotfiles/run.sh install' vagrant
