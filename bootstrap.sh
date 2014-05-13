@@ -92,6 +92,11 @@ if [[ $1 == "vagrant" ]]; then
   tar xvjf phantomjs-1.9.7-linux-x86_64.tar.bz2
   mv phantomjs-1.9.7-linux-x86_64 /usr/local/share/phantomjs
   ln -s /usr/local/share/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+
+  # install nodejs
+  cd /tmp
+  wget http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-x64.tar.gz
+  cd /usr/local && tar --strip-components 1 -xzf /tmp/node-v0.10.28-linux-x64.tar.gz
 fi
 
 exit 0
