@@ -2,11 +2,13 @@
 #
 # directory shortcut
 #
-p() {cd ~/proj/$1;}
-h() {cd ~/$1;}
+p()  { cd ~/proj/$1;}
+h()  { cd ~/$1;}
+vm() { cd ~/vagrant/$1;}
 
 compctl -W ~/proj -/ p
 compctl -W ~ -/ h
+compctl -W ~/vagrant -/ vm
 
 
 #
@@ -174,11 +176,12 @@ alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
 #
 # development vm aliases
 #
-VM_DIR='vagrant/precise64'
+# VM_DIR='vagrant/precise64'
 alias va=vagrant
-alias vmup='cd ~/$VM_DIR; va up'
-alias vmsp='cd ~/$VM_DIR; va suspend'
-alias vm='cd ~/$VM_DIR; va ssh'
+alias vssh='va ssh'
+alias vup='va up'
+alias vsup='va suspend'
+alias vhalt='va halt'
 
 
 #
