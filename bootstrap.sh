@@ -5,19 +5,43 @@
 # to used it as vagrant provision shell script, invoke with parameter 'vagrant'
 #
 
-if (uname -a | grep -i ubuntu > /dev/null); then
-  # setup proper locale
-  locale-gen
-  update-locale LC_ALL=en_HK.UTF8 LC_CTYPE=en_HK.UTF-8
-  export LC_ALL=en_HK.UTF8
+source /etc/os-release
 
+if [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "14.04" ]]; then
   # update package list
-  sed -i 's/us\.archive\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
+  sed -i 's/archive\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
   sed -i 's/security\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
   apt-get update
-  # apt-get -y upgrade
 
   apt-get -y install python-software-properties
+
+  # setup proper locale
+  locale-gen en_HK.utf8
+  update-locale LC_ALL=en_HK.utf8 LANG=en_HK.utf8
+  export LANG=en_HK.UTF8
+
+  # install required packages
+  apt-get -y install build-essential git-core tig wget curl htop tmux \
+    rake exuberant-ctags vim-gtk silversearcher-ag zsh
+  apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3 redis-server
+  apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
+    libxml2 libxml2-dev libffi-dev libyaml-dev autoconf \
+    libc6-dev libreadline6-dev zlib1g zlib1g-dev \
+    ruby-dev libruby2.0 libsqlite3-dev libpq-dev
+  apt-get -y install cmake python-dev     # dependency of YouCompleteMe vim plugin
+
+elif [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "12.04" ]]; then
+  # update package list
+  sed -i 's/archive\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
+  sed -i 's/security\.ubuntu\.com/ftp\.cuhk\.edu\.hk\/pub\/Linux/g' /etc/apt/sources.list
+  apt-get update
+
+  apt-get -y install python-software-properties
+
+  # setup proper locale
+  locale-gen en_HK.utf8
+  update-locale LC_ALL=en_HK.utf8 LANG=en_HK.utf8
+  export LANG=en_HK.UTF8
 
   # get latest repository
   add-apt-repository -y ppa:git-core/ppa
@@ -33,14 +57,14 @@ if (uname -a | grep -i ubuntu > /dev/null); then
   # install required packages
   apt-get -y install build-essential git-core tig wget curl htop tmux \
     rake exuberant-ctags vim-gtk silversearcher-ag zsh
-  apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3
+  apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3 redis-server
   apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
     libxml2 libxml2-dev libffi-dev libyaml-dev libxslt-dev autoconf \
     libc6-dev libreadline6-dev zlib1g zlib1g-dev \
     ruby-dev libopenssl-ruby libsqlite3-dev libpq-dev
   apt-get -y install cmake python-dev     # dependency of YouCompleteMe vim plugin
 
-elif (uname -a | grep -i arch > /dev/null); then
+elif [[ "$NAME" = "ArchLinux" ]]; then
   # update package list
   pacman -Sy
   pacman --noconfirm --needed -S base-devel git tig wget curl htop tmux \
@@ -79,7 +103,7 @@ make install
 
 if [[ $1 == "vagrant" ]]; then
   # set local timezone
-  echo 'Asic/Hong_Kong' | tee /etc/timezone
+  echo 'Asia/Hong_Kong' | tee /etc/timezone
   dpkg-reconfigure --frontend noninteractive tzdata
 
   # install personalize development environment
