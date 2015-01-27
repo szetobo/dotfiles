@@ -179,6 +179,7 @@ alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
 # VM_DIR='vagrant/precise64'
 alias va=vagrant
 alias vssh='va ssh'
+alias vsshf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
 alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
