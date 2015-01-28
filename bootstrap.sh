@@ -28,7 +28,7 @@ if [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "14.04" ]]; then
     libxml2 libxml2-dev libffi-dev libyaml-dev autoconf \
     libc6-dev libreadline6-dev zlib1g zlib1g-dev \
     ruby-dev libruby2.0 libsqlite3-dev libpq-dev
-  apt-get -y install pdftk poppler-utils openjdk7-jdk
+  apt-get -y install pdftk poppler-utils openjdk-7-jdk
 
 elif [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "12.04" ]]; then
   # update package list
@@ -62,7 +62,7 @@ elif [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "12.04" ]]; then
     libxml2 libxml2-dev libffi-dev libyaml-dev libxslt-dev autoconf \
     libc6-dev libreadline6-dev zlib1g zlib1g-dev \
     ruby-dev libopenssl-ruby libsqlite3-dev libpq-dev
-  apt-get -y install pdftk poppler-utils openjdk7-jdk
+  apt-get -y install pdftk poppler-utils openjdk-7-jdk
 
 elif [[ "$NAME" = "ArchLinux" ]]; then
   # update package list
