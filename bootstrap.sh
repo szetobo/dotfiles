@@ -21,7 +21,7 @@ if [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "14.04" ]]; then
   export LANG=en_HK.UTF8
 
   # install required packages
-  apt-get -y install build-essential git-core tig wget curl htop tmux \
+  apt-get -y install build-essential git-core git-extras tig wget curl htop tmux \
     rake exuberant-ctags vim-gtk silversearcher-ag zsh
   apt-get -y install nginx postgresql-9.3 postgresql-contrib-9.3 redis-server
   apt-get -y install bison openssl libssl-dev libxslt1.1 libxslt1-dev \
