@@ -39,7 +39,7 @@ alias ackri='ack --ruby -i'
 alias rdms='rake db:migrate:status'
 alias rtp='rake test:prepare'
 alias rtc='rake temp:create'
-alias rrur='RAILS_RELATIVE_URL_ROOT=/`basename $(pwd)`'
+alias RRUR='RAILS_RELATIVE_URL_ROOT=/`basename $(pwd)`'
 
 alias -g G='| ack'
 alias -g P='| less'
