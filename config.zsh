@@ -121,6 +121,7 @@ bindkey -M vicmd "^?"  backward-delete-char
 bindkey -M viins "^[[3~"  delete-char
 bindkey -M viins "^[3;5~" delete-char
 bindkey -M viins "\e[3~"  delete-char
+bindkey -M viins "^[[Z"  reverse-menu-complete
 
 
 # expand ... to /..
