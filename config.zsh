@@ -127,16 +127,16 @@ bindkey -M viins "^[[Z"  reverse-menu-complete
 # expand ... to /..
 #
 #
-function expand-dot-to-parent-directory-path {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+='/..'
-  else
-    LBUFFER+='.'
-  fi
-}
-zle -N expand-dot-to-parent-directory-path
-bindkey -M viins "." expand-dot-to-parent-directory-path
-bindkey -M isearch . self-insert 2> /dev/null
+# function expand-dot-to-parent-directory-path {
+#   if [[ $LBUFFER = *.. ]]; then
+#     LBUFFER+='/..'
+#   else
+#     LBUFFER+='.'
+#   fi
+# }
+# zle -N expand-dot-to-parent-directory-path
+# bindkey -M viins "." expand-dot-to-parent-directory-path
+# bindkey -M isearch . self-insert 2> /dev/null
 
 
 #
