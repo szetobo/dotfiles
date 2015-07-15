@@ -77,28 +77,30 @@ fi
 #
 # install chruby
 #
-# if [ ! -d /usr/local/share/chruby ]; then
-#   wget -O /tmp/chruby-0.3.7.tar.gz https://github.com/postmodern/chruby/archive/v0.3.7.tar.gz
-#   tar -C /tmp -xvzf /tmp/chruby-0.3.7.tar.gz
-#   cd /tmp/chruby-0.3.7
-#   make install
-# fi
-git clone git://github.com/postmodern/chruby.git ~/src/chruby
-cd ~/src/chruby
-make install
+if [ ! -d ~/src/chruby ]; then
+  git clone git://github.com/postmodern/chruby.git ~/src/chruby
+  cd ~/src/chruby
+  make install
+fi
 
 #
 # install ruby-install
 #
-# if [ ! -x /usr/local/bin/ruby-install ]; then
-#   wget -O /tmp/ruby-install-0.3.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.3.0.tar.gz
-#   tar -C /tmp -xzvf /tmp/ruby-install-0.3.0.tar.gz
-#   cd /tmp/ruby-install-0.3.0/
-#   make install
-# fi
-git clone git://github.com/postmodern/ruby-install.git ~/src/ruby-install
-cd ~/src/ruby-install
-make install
+if [ ! -d ~/src/ruby-install ]; then
+  git clone git://github.com/postmodern/ruby-install.git ~/src/ruby-install
+  cd ~/src/ruby-install
+  make install
+fi
+
+#
+# install git-extras
+#
+if [ ! -d ~/src/git-extras ]; then
+  git clone git://github.com/tj/git-extras ~/src/git-extras
+  cd ~/src/git-extras
+  git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+  make install
+fi
 
 
 if [[ $1 == "vagrant" ]]; then
