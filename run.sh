@@ -20,6 +20,7 @@ link_files() {
   link_file $1/inputrc ~/.inputrc
   link_file $1/pryrc ~/.pryrc
   link_file $1/psqlrc ~/.psqlrc
+  link_file $1/tigrc ~/.tigrc
   link_file $1/tmux.conf ~/.tmux.conf
   link_file $1/vimrc.local ~/.vimrc.local
   link_file $1/vimrc.bundles.local ~/.vimrc.bundles.local
@@ -37,6 +38,7 @@ unlink_files() {
   unlink_file ~/.inputrc
   unlink_file ~/.pryrc
   unlink_file ~/.psqlrc
+  unlink_file ~/.tigrc
   unlink_file ~/.tmux.conf
   unlink_file ~/.vimrc.local
   unlink_file ~/.vimrc.bundles.local
