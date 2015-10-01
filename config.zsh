@@ -64,15 +64,15 @@ alias gpa="git co master && git pull && git remote prune origin"
 # tmux alias
 #
 tx() {
-  if ! tmux has-session -t work; then
+  if ! tmux has-session -t work 2> /dev/null; then
     tmux new -s work -d;
-    tmux splitw -h -p 40 -t work;
-    tmux select-p -t 1;
+    # tmux splitw -h -p 40 -t work;
+    # tmux select-p -t 1;
   fi
   tmux attach -t work;
 }
 txtest() {
-  if ! tmux has-session -t test; then
+  if ! tmux has-session -t test 2> /dev/null; then
     tmux new -s test -d;
   fi
   tmux attach -t test;
@@ -146,13 +146,13 @@ export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
 
-alias v='vim'
-alias vi='v'
+# alias v='vim'
+# alias vi='v'
 alias vt='vim -c :CtrlP'
 
-alias vimrc='v ~/.vimrc.local'
-alias vundle='v ~/.vimrc.bundles.local'
-alias vcfg='v ~/.oh-my-zsh/custom/config.zsh'
+alias vimrc='vim ~/.vimrc.local'
+alias vundle='vim ~/.vimrc.bundles.local'
+alias vcfg='vim ~/.oh-my-zsh/custom/config.zsh'
 
 
 #
