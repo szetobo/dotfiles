@@ -12,6 +12,13 @@ compctl -W ~/vagrant -/ vm
 
 
 #
+# pairing session shortcut
+#
+pairg() { ssh -t $1 ssh -p $2 -t vagrant@localhost 'tmux attach' }
+pairh() { ssh -R $2\:localhost:$2 -t $1 'htop' }
+
+
+#
 # misc aliases or functions
 #
 alias reload='. ~/.zshrc'
@@ -154,17 +161,7 @@ alias vimrc='vim ~/.vimrc.local'
 alias vundle='vim ~/.vimrc.bundles.local'
 alias vcfg='vim ~/.oh-my-zsh/custom/config.zsh'
 
-
 #
-# ruby 1.9.3 performance patch settings, not sure if it has any effect on ruby 2.0
-#
-# export RUBY_GC_MALLOC_LIMIT=1000000000
-# export RUBY_HEAP_FREE_MIN=500000
-# export RUBY_HEAP_MIN_SLOTS=40000
-# export RUBY_HEAP_SLOTS_INCREMENT=1000000
-# export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-
-
 #
 # rails development aliases
 #
@@ -185,13 +182,3 @@ alias vsf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
 alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
-
-
-#
-# chruby (supersede by oh-my-zsh's chruby plugin)
-#
-# if [ -f /usr/local/share/chruby/chruby.sh ]; then
-#   source /usr/local/share/chruby/chruby.sh
-#   source /usr/local/share/chruby/auto.sh
-# fi
-
