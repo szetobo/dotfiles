@@ -36,7 +36,7 @@ alias sa='ssh-add'
 alias salock='ssh-add -x'
 alias saunlock='ssh-add -X'
 
-alias open='xdg-open'
+# alias open='xdg-open'
 
 alias ack='ag'
 alias ackr='ack --ruby'
@@ -105,8 +105,8 @@ bindkey -M vicmd "^[[1~" beginning-of-line
 bindkey -M vicmd "^[[F"  end-of-line
 bindkey -M vicmd "^[OF"  end-of-line
 bindkey -M vicmd "^[[4~" end-of-line
-bindkey -M vicmd "^[OC" forward-word
-bindkey -M vicmd "^[OD" backward-word
+# bindkey -M vicmd "^[OC" forward-word
+# bindkey -M vicmd "^[OD" backward-word
 bindkey -M vicmd "^?"  backward-delete-char
 bindkey -M vicmd "^[[3~"  delete-char
 bindkey -M vicmd "^[3;5~" delete-char
@@ -122,8 +122,8 @@ bindkey -M viins "^[[1~" beginning-of-line
 bindkey -M viins "^[[F"  end-of-line
 bindkey -M viins "^[OF"  end-of-line
 bindkey -M viins "^[[4~" end-of-line
-bindkey -M viins "^[OC" forward-word
-bindkey -M viins "^[OD" backward-word
+# bindkey -M viins "^[OC" forward-word
+# bindkey -M viins "^[OD" backward-word
 bindkey -M vicmd "^?"  backward-delete-char
 bindkey -M viins "^[[3~"  delete-char
 bindkey -M viins "^[3;5~" delete-char
