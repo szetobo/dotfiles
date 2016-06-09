@@ -14,8 +14,8 @@ compctl -W ~/vagrant -/ vm
 #
 # pairing session shortcut
 #
-pairg() { ssh -t $1 ssh -p $2 -t vagrant@localhost 'tmux attach' }
-pairh() { ssh -R $2\:localhost:$2 -t $1 'htop' }
+pairg() { ssh -t $1 ssh -o 'StrictHostKeyChecking=no' -o 'UserKnownHostsFile=/dev/null' -p $2 -t vagrant@localhost 'tmux attach' }
+pairh() { ssh -S none -o 'ExitOnForwardFailure=yes' -R $2\:localhost:$2 -t $1 'watch -en 10 who' }
 
 
 #
@@ -25,13 +25,13 @@ alias reload='. ~/.zshrc'
 
 alias px='ps aux'
 
-if (uname -a | grep -i darwin > /dev/null); then
-  alias ls='ls -FG'
-else
-  alias ls='ls --color=tty -F'
-fi
-alias la='ls -a'
-alias lla='ll -a'
+# if (uname -a | grep -i darwin > /dev/null); then
+#   alias ls='ls -FG'
+# else
+#   alias ls='ls --color=tty -F'
+# fi
+# alias la='ls -a'
+# alias lla='ll -a'
 alias sa='ssh-add'
 alias salock='ssh-add -x'
 alias saunlock='ssh-add -X'
@@ -43,10 +43,16 @@ alias ackr='ack --ruby'
 alias acki='ack -i'
 alias ackri='ack --ruby -i'
 
+alias bd='bundle'
+alias be='bundle exec'
+alias bi='bundle install'
+
+alias rdm='rake db:migrate'
 alias rdms='rake db:migrate:status'
 alias rtp='rake test:prepare'
 alias rtc='rake temp:create'
-alias RRUR='RAILS_RELATIVE_URL_ROOT=/`basename $(pwd)`'
+alias rc='rails console'
+# alias RRUR='RAILS_RELATIVE_URL_ROOT=/`basename $(pwd)`'
 
 alias -g G='| ack'
 alias -g P='| less'
@@ -63,6 +69,8 @@ alias gcl='git clone'
 alias gls='git ls-files'
 alias gsa='git stash'
 alias gaa='git add -A'
+alias gba='git branch -a'
+alias gst='git status'
 
 alias gpa="git co master && git pull && git remote prune origin"
 
@@ -97,38 +105,38 @@ txpair() {
 #
 # further customize vi-mode key bindings
 #
-bindkey ' ' magic-space
-
-bindkey -M vicmd "^[[H"  beginning-of-line
-bindkey -M vicmd "^[OH"  beginning-of-line
-bindkey -M vicmd "^[[1~" beginning-of-line
-bindkey -M vicmd "^[[F"  end-of-line
-bindkey -M vicmd "^[OF"  end-of-line
-bindkey -M vicmd "^[[4~" end-of-line
-# bindkey -M vicmd "^[OC" forward-word
-# bindkey -M vicmd "^[OD" backward-word
-bindkey -M vicmd "^?"  backward-delete-char
-bindkey -M vicmd "^[[3~"  delete-char
-bindkey -M vicmd "^[3;5~" delete-char
-bindkey -M vicmd "\e[3~"  delete-char
-
-bindkey -M viins "^L" clear-screen
-bindkey -M viins "^W" backward-kill-word
-bindkey -M viins "^A" beginning-of-line
-bindkey -M viins "^E" end-of-line
-bindkey -M viins "^[[H"  beginning-of-line
-bindkey -M viins "^[OH"  beginning-of-line
-bindkey -M viins "^[[1~" beginning-of-line
-bindkey -M viins "^[[F"  end-of-line
-bindkey -M viins "^[OF"  end-of-line
-bindkey -M viins "^[[4~" end-of-line
-# bindkey -M viins "^[OC" forward-word
-# bindkey -M viins "^[OD" backward-word
-bindkey -M vicmd "^?"  backward-delete-char
-bindkey -M viins "^[[3~"  delete-char
-bindkey -M viins "^[3;5~" delete-char
-bindkey -M viins "\e[3~"  delete-char
-bindkey -M viins "^[[Z"  reverse-menu-complete
+# bindkey ' ' magic-space
+# 
+# bindkey -M vicmd "^[[H"  beginning-of-line
+# bindkey -M vicmd "^[OH"  beginning-of-line
+# bindkey -M vicmd "^[[1~" beginning-of-line
+# bindkey -M vicmd "^[[F"  end-of-line
+# bindkey -M vicmd "^[OF"  end-of-line
+# bindkey -M vicmd "^[[4~" end-of-line
+# # bindkey -M vicmd "^[OC" forward-word
+# # bindkey -M vicmd "^[OD" backward-word
+# bindkey -M vicmd "^?"  backward-delete-char
+# bindkey -M vicmd "^[[3~"  delete-char
+# bindkey -M vicmd "^[3;5~" delete-char
+# bindkey -M vicmd "\e[3~"  delete-char
+# 
+# bindkey -M viins "^L" clear-screen
+# bindkey -M viins "^W" backward-kill-word
+# bindkey -M viins "^A" beginning-of-line
+# bindkey -M viins "^E" end-of-line
+# bindkey -M viins "^[[H"  beginning-of-line
+# bindkey -M viins "^[OH"  beginning-of-line
+# bindkey -M viins "^[[1~" beginning-of-line
+# bindkey -M viins "^[[F"  end-of-line
+# bindkey -M viins "^[OF"  end-of-line
+# bindkey -M viins "^[[4~" end-of-line
+# # bindkey -M viins "^[OC" forward-word
+# # bindkey -M viins "^[OD" backward-word
+# bindkey -M vicmd "^?"  backward-delete-char
+# bindkey -M viins "^[[3~"  delete-char
+# bindkey -M viins "^[3;5~" delete-char
+# bindkey -M viins "\e[3~"  delete-char
+# bindkey -M viins "^[[Z"  reverse-menu-complete
 
 
 # expand ... to /..
@@ -165,11 +173,11 @@ alias vcfg='vim ~/.oh-my-zsh/custom/config.zsh'
 #
 # rails development aliases
 #
-alias lgc='for f in $(ls log/*.log); do cat /dev/null >! $f; done'
-alias kuc='[[ -f tmp/pids/unicorn.pid ]] && kill `cat tmp/pids/unicorn.pid`'
-alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec unicorn -c $PWD/config/unicorn.rb -D'
-alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
-alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
+# alias lgc='for f in $(ls log/*.log); do cat /dev/null >! $f; done'
+# alias kuc='[[ -f tmp/pids/unicorn.pid ]] && kill `cat tmp/pids/unicorn.pid`'
+# alias uc='[[ -f config/unicorn.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec unicorn -c $PWD/config/unicorn.rb -D'
+# alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
+# alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
 
 
 #
