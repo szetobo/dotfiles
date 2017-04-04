@@ -26,6 +26,7 @@ endif
 nmap \ ,
 nnoremap ' `
 nnoremap ` '
+inoremap jj <ESC>
 noremap  ,, <C-\><C-N>
 noremap! ,, <C-\><C-N>
 snoremap ,, <C-\><C-N>
@@ -56,7 +57,7 @@ nmap <Leader>rl :SlimuxShellLast<CR>
 nmap <Leader>rc :SlimuxShellConfigure<CR>
 
 vmap <Enter>   <Plug>(EasyAlign)
-nmap <leader>a <Plug>(EasyAlign)
+" nmap <leader>a <Plug>(EasyAlign)
 
 nnoremap <leader>u :GundoToggle<CR>
 
@@ -73,9 +74,6 @@ let g:gundo_close_on_revert=1
 let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
 let g:ctrlp_cmd='CtrlPMixed'
 let g:ycm_collect_identifiers_from_comments_and_strings=1
-
-call altercmd#load()
-AlterCommand t tabnew
 
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
@@ -279,16 +277,34 @@ autocmd User Rails call s:rails_test_helpers()
 
 " GUI settings {{{
 set t_Co=256
-colorscheme molokai
+if globpath(&runtimepath, 'colors/solarized.vim', 1) !=# ''
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme desert
+endif
+" colorscheme molokai
 " colorscheme jellybeans
-" colorscheme solarized
-" if $COLORTERM =~ "rxvt"
-"   set background=dark
-" endif
 " }}}
 
 " Share VIM settings {{{
-if $TMUX =~ "pair"
-  source ~/.vimrc.share
-endif
+" if $TMUX =~ "pair"
+"   source ~/.vimrc.share
+" endif
 " }}}
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
