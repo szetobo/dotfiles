@@ -7,15 +7,11 @@ Ubuntu/Debian & ArchLinux), but should also working for Mac OS/X as well.
 
 ## Installation
 
-    ~/.dotfiles/run.sh install
-
-## Uninstall
-
-    ~/.dotfiles/run.sh uninstall
+    curl -L https://github.com/szetobo/dotfiles/raw/master/zshrc > ~/.zshrc
 
 ## Bootstrap
 
-To have a complete environment with oh-my-zsh & janus installed
+To have a complete environment installed
 
     ~/.dotfiles/bootstrap.sh
 
