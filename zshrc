@@ -1,7 +1,23 @@
 # shell environment initialization {{{
 
-[[ -z $(dpkg -l | grep htop)       ]] && sudo apt-get install -y htop
-[[ -z $(dpkg -l | grep git-extras) ]] && sudo apt-get install -y git-extras
+case "$(uname -s)" in
+  Linux)
+    source /etc/os-release
+    ;;
+  Darwin)
+    NAME=Darwin
+esac
+
+for tool (ag git-extras htop); do
+  case "$NAME" in
+    Ubuntu)
+      [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
+      ;;
+    Darwin)
+      [[ -z $(brew list | grep $tool) ]] && brew install $tool
+      ;;
+  esac
+done
 
 if [[ ! -d ~/.dotfiles ]]; then
   git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles
@@ -59,8 +75,13 @@ zplug "zimframework/zim", as:plugin, use:"init.zsh", hook-build:"ln -sf $ZPLUG_R
 zmodules=(directory environment git history input spectrum ssh utility meta \
           syntax-highlighting history-substring-search prompt completion)
 
-zprompt_theme='eriner'
 zhighlighters=(main brackets pattern cursor root)
+
+if [[ "$NAME" = "Ubuntu" ]]; then
+  zprompt_theme='eriner'
+else
+  zprompt_theme='liquidprompt'
+fi
 # }}}
 
 if ! zplug check --verbose; then
