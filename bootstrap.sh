@@ -16,7 +16,7 @@ if [[ "$NAME" = "Ubuntu" && "$VERSION_ID" = "14.04" ]]; then
   apt-get -y install python-software-properties
 
   # setup proper locale
-  locale-gen en_HK.utf8
+  locale-gen en_HK.utf8 zh_TW.utf8
   update-locale LC_ALL=en_HK.utf8 LANG=en_HK.utf8
   export LANG=en_HK.UTF8
 
