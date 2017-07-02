@@ -116,7 +116,7 @@ compctl -W ~/vagrant -/ vm
 # development shortcut {{{
 alias pa!='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb'
 alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
-alias kpa='[[ -f tmp/pids/puma.state ]] && pumactl -S tmp/pids/puma.state stop'
+alias kpa='[[ -f tmp/pids/puma.state ]] && bundle exec pumactl -S tmp/pids/puma.state stop'
 
 alias mc='bundle exec mailcatcher --http-ip 0.0.0.0'
 alias kmc='pkill -fe mailcatcher'
@@ -132,10 +132,11 @@ cop() {
   local extra_options='--display-cop-names --rails'
 
   if [[ $# -gt 0 ]]; then
-    local files=$(eval "git diff $@ --name-only -- *.{$exts} $excludes")
+    local files=$(eval "git diff $@ --name-only -- \*.{$exts} '$excludes'")
   else
-    local files=$(eval "git status --porcelain -- *.{$exts} $excludes | sed -e '/^\s\?[DRC] /d' -e 's/^.\{3\}//g'")
+    local files=$(eval "git status --porcelain -- \*.{$exts} '$excludes' | sed -e '/^\s\?[DRC] /d' -e 's/^.\{3\}//g'")
   fi
+  # local files=$(eval "git diff --name-only -- \*.{$exts} '$excludes'")
 
   if [[ -n "$files" ]]; then
     echo $files | xargs bundle exec rubocop `echo $extra_options`
@@ -198,6 +199,9 @@ alias vsf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
 alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
+
+alias gws=gwS
+alias gba='gb -a'
 # }}}
 
 # environment variables {{{

@@ -279,12 +279,13 @@ autocmd User Rails call s:rails_test_helpers()
 set t_Co=256
 if globpath(&runtimepath, 'colors/solarized.vim', 1) !=# ''
   set background=dark
+  " set background=light
   colorscheme solarized
 else
   colorscheme desert
 endif
 " colorscheme molokai
-" colorscheme jellybeans
+colorscheme jellybeans
 " }}}
 
 " Share VIM settings {{{
