@@ -8,16 +8,18 @@ case "$(uname -s)" in
     NAME=Darwin
 esac
 
-for tool (ag git-extras htop); do
-  case "$NAME" in
-    Ubuntu)
+case "$NAME" in
+  Ubuntu)
+    for tool (git-extras htop silversearcher-ag); do
       [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
-      ;;
-    Darwin)
+    done
+    ;;
+  Darwin)
+    for tool (git-extras htop the_silver_searcher); do
       [[ -z $(brew list | grep $tool) ]] && brew install $tool
-      ;;
-  esac
-done
+    done
+    ;;
+esac
 
 if [[ ! -d ~/.dotfiles ]]; then
   git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles
@@ -126,7 +128,7 @@ alias sk='[[ -f config/sidekiq.yml ]] && bundle exec sidekiq -C $PWD/config/side
 alias ksk='pkill -fe sidekiq'
 
 pairg() { ssh -t $1 ssh -o 'StrictHostKeyChecking=no' -o 'UserKnownHostsFile=/dev/null' -p $2 -t vagrant@localhost 'tmux attach' }
-pairh() { ssh -S none -o 'ExitOnForwardFailure=yes' -R $2\:localhost:$2 -t $1 'watch -en 10 who' }
+pairh() { ssh -S none -o 'ExitOnForwardFailure=yes' -R $2\:localhost:22222 -t $1 'watch -en 10 who' }
 
 cop() {
   local exts=('rb,thor,jbuilder')
