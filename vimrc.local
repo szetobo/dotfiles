@@ -8,6 +8,7 @@ set cursorline
 set nostartofline
 if v:version > 702
   set relativenumber
+  set regexpengine=1
 endif
 
 set scroll=1
@@ -285,7 +286,7 @@ else
   colorscheme desert
 endif
 " colorscheme molokai
-colorscheme jellybeans
+" colorscheme jellybeans
 " }}}
 
 " Share VIM settings {{{

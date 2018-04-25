@@ -69,10 +69,12 @@ zplug "junegunn/fzf", as:command, hook-build:"./install --bin", use:"bin/{fzf-tm
 
 zplug "zsh-users/zsh-autosuggestions", defer:3
 
-# zim {{{
-zplug "zimframework/zim", as:plugin, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/zimframework/zim ~/.zim"
+zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 
-zmodules=(directory environment git history input spectrum ssh utility meta \
+# zim {{{
+zplug "zimfw/zimfw", as:plugin, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/zimfw/zimfw ~/.zim"
+
+zmodules=(directory environment git git-info history input ssh utility \
           syntax-highlighting history-substring-search prompt completion)
 
 zhighlighters=(main brackets pattern cursor root)
