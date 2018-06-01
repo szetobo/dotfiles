@@ -63,6 +63,7 @@ source ~/.zplug/init.zsh
 
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/chruby",  from:oh-my-zsh
+zplug "plugins/asdf",    from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/rails",   from:oh-my-zsh
 
@@ -81,11 +82,14 @@ zmodules=(directory environment git git-info history input ssh utility \
 
 zhighlighters=(main brackets pattern cursor root)
 
-if [[ "$NAME" = "Ubuntu" ]]; then
-  zprompt_theme='eriner'
-else
-  zprompt_theme='liquidprompt'
-fi
+zplug 'dracula/zsh', as:theme
+# zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+
+# if [[ "$NAME" = "Ubuntu" ]]; then
+#   zprompt_theme='eriner'
+# else
+#   zprompt_theme='liquidprompt'
+# fi
 # }}}
 
 if ! zplug check --verbose; then
@@ -220,7 +224,7 @@ bindkey -M vicmd '^e' end-of-line
 bindkey '^f' vi-forward-word
 bindkey '^b' vi-backward-word
 
-bindkey '^j' autosuggest-accept
+bindkey '^o' autosuggest-accept
 
 bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
