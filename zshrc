@@ -10,7 +10,7 @@ esac
 
 case "$NAME" in
   Ubuntu)
-    for tool (git-extras htop silversearcher-ag); do
+    for tool (git-extras htop silversearcher-ag tree); do
       [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
     done
     ;;
@@ -187,6 +187,7 @@ fixssh() {
 # aliases {{{
 alias px='ps aux'
 alias vt='vim -c :CtrlP'
+alias v.='vim .'
 
 alias sa='ssh-add'
 alias salock='ssh-add -x'
@@ -201,6 +202,10 @@ alias -g P='| $PAGER'
 alias -g WC='| wc -l'
 alias -g RE='RESCUE=1'
 
+alias -g HED='HANAMI_ENV=development'
+alias -g HEP='HANAMI_ENV=production'
+alias -g HET='HANAMI_ENV=test'
+
 alias va=vagrant
 alias vsh='va ssh'
 alias vsf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
@@ -210,6 +215,14 @@ alias vhalt='va halt'
 
 alias gws=gwS
 alias gba='gb -a'
+
+alias ha=hanami
+alias hac='ha console'
+alias had='ha destroy'
+alias hag='ha generate'
+alias ham='ha generate migration'
+alias has='ha server'
+alias har='ha routes'
 # }}}
 
 # environment variables {{{
