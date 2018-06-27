@@ -78,7 +78,7 @@ zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 zplug "zimfw/zimfw", as:plugin, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/zimfw/zimfw ~/.zim"
 
 zmodules=(directory environment git git-info history input ssh utility \
-          syntax-highlighting history-substring-search prompt completion)
+          prompt completion syntax-highlighting history-substring-search)
 
 zhighlighters=(main brackets pattern cursor root)
 

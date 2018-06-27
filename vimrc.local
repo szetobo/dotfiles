@@ -278,16 +278,16 @@ autocmd User Rails call s:rails_test_helpers()
 
 " GUI settings {{{
 set t_Co=256
-if globpath(&runtimepath, 'colors/solarized.vim', 1) !=# ''
+" if globpath(&runtimepath, 'colors/solarized.vim', 1) !=# ''
   " set background=dark
   " set background=light
   " colorscheme solarized
-else
+" else
   " colorscheme desert
-endif
-colorscheme dracula
-" colorscheme molokai
-" colorscheme jellybeans
+" endif
+silent! colorscheme molokai
+silent! colorscheme jellybeans
+silent! colorscheme dracula
 " }}}
 
 " Share VIM settings {{{
