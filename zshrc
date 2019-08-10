@@ -29,24 +29,24 @@ if [[ ! -d ~/.dotfiles ]]; then
   ln -sf ~/.dotfiles/psqlrc              ~/.psqlrc
   ln -sf ~/.dotfiles/tigrc               ~/.tigrc
   ln -sf ~/.dotfiles/tmux.conf           ~/.tmux.conf
-  ln -sf ~/.dotfiles/vimrc.local         ~/.vimrc.local
-  ln -sf ~/.dotfiles/vimrc.bundles.local ~/.vimrc.bundles.local
+  # ln -sf ~/.dotfiles/vimrc.local         ~/.vimrc.local
+  # ln -sf ~/.dotfiles/vimrc.bundles.local ~/.vimrc.bundles.local
 
   ln -sf ~/.dotfiles/zshrc               ~/.zshrc
 
   mkdir -p ~/.psql_history
 fi
 
-if [[ ! -d ~/.maximum-awesome ]]; then
-  git clone git://github.com/square/maximum-awesome.git ~/.maximum-awesome
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.maximum-awesome/vim/bundle/Vundle.vim
+# if [[ ! -d ~/.maximum-awesome ]]; then
+#   git clone git://github.com/square/maximum-awesome.git ~/.maximum-awesome
+#   git clone https://github.com/VundleVim/Vundle.vim.git ~/.maximum-awesome/vim/bundle/Vundle.vim
 
-  ln -sf ~/.maximum-awesome/vim ~/.vim
-  ln -sf ~/.maximum-awesome/vimrc ~/.vimrc
-  ln -sf ~/.maximum-awesome/vimrc.bundles ~/.vimrc.bundles
+#   ln -sf ~/.maximum-awesome/vim ~/.vim
+#   ln -sf ~/.maximum-awesome/vimrc ~/.vimrc
+#   ln -sf ~/.maximum-awesome/vimrc.bundles ~/.vimrc.bundles
 
-  vim +BundleInstall +qall
-fi
+#   vim +BundleInstall +qall
+# fi
 
 # }}}
 
@@ -62,7 +62,7 @@ fi
 source ~/.zplug/init.zsh
 
 zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/chruby",  from:oh-my-zsh
+# zplug "plugins/chruby",  from:oh-my-zsh
 zplug "plugins/asdf",    from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/rails",   from:oh-my-zsh
@@ -186,14 +186,16 @@ fixssh() {
 
 # aliases {{{
 alias px='ps aux'
-alias vt='vim -c :CtrlP'
-alias v.='vim .'
+alias vt='vi -c :CtrlP'
+alias vl='vi -c :CtrlPMRU'
+alias v.='vi .'
 
 alias sa='ssh-add'
 alias salock='ssh-add -x'
 alias saunlock='ssh-add -X'
 
 alias agi='ag -i'
+alias agiw='ag -i -w'
 alias agr='ag --ruby'
 alias agri='ag --ruby -i'
 
@@ -215,6 +217,8 @@ alias vhalt='va halt'
 
 alias gws=gwS
 alias gba='gb -a'
+alias gbd='gwd master...'
+alias gbD='gwd --name-only master...'
 
 alias ha=hanami
 alias hac='ha console'
@@ -226,8 +230,8 @@ alias har='ha routes'
 # }}}
 
 # environment variables {{{
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=vi
+export VISUAL=vi
 #}}}
 
 # key bindings {{{
@@ -243,4 +247,9 @@ bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
 # }}}
 
+if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
+  source ~/.config/exercism/exercism_completion.zsh
+fi
+
+path+=~/bin
 # }}}
