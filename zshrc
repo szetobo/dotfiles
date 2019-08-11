@@ -10,12 +10,12 @@ esac
 
 case "$NAME" in
   Ubuntu)
-    for tool (git-extras htop silversearcher-ag tree); do
+    for tool (git-extras htop silversearcher-ag tree neovim); do
       [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
     done
     ;;
   Darwin)
-    for tool (git-extras htop the_silver_searcher); do
+    for tool (git-extras htop the_silver_searcher neovim); do
       [[ -z $(brew list | grep $tool) ]] && brew install $tool
     done
     ;;
@@ -29,24 +29,20 @@ if [[ ! -d ~/.dotfiles ]]; then
   ln -sf ~/.dotfiles/psqlrc              ~/.psqlrc
   ln -sf ~/.dotfiles/tigrc               ~/.tigrc
   ln -sf ~/.dotfiles/tmux.conf           ~/.tmux.conf
-  # ln -sf ~/.dotfiles/vimrc.local         ~/.vimrc.local
-  # ln -sf ~/.dotfiles/vimrc.bundles.local ~/.vimrc.bundles.local
-
   ln -sf ~/.dotfiles/zshrc               ~/.zshrc
+
+  mkdir -p ~/.config/nvim
+  ln -sh ~/.dotfiles/init.vim            ~/.config/nvim/init.vim
+
+  sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+  sudo update-alternatives --auto vi
+  sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+  sudo update-alternatives --auto vim
+  sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+  sudo update-alternatives --auto editor
 
   mkdir -p ~/.psql_history
 fi
-
-# if [[ ! -d ~/.maximum-awesome ]]; then
-#   git clone git://github.com/square/maximum-awesome.git ~/.maximum-awesome
-#   git clone https://github.com/VundleVim/Vundle.vim.git ~/.maximum-awesome/vim/bundle/Vundle.vim
-
-#   ln -sf ~/.maximum-awesome/vim ~/.vim
-#   ln -sf ~/.maximum-awesome/vimrc ~/.vimrc
-#   ln -sf ~/.maximum-awesome/vimrc.bundles ~/.vimrc.bundles
-
-#   vim +BundleInstall +qall
-# fi
 
 # }}}
 
