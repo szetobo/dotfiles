@@ -10,7 +10,7 @@ esac
 
 case "$NAME" in
   Ubuntu)
-    for tool (git-extras htop silversearcher-ag tree neovim); do
+    for tool (git-extras htop silversearcher-ag tree); do
       [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
     done
     ;;
@@ -31,8 +31,15 @@ if [[ ! -d ~/.dotfiles ]]; then
   ln -sf ~/.dotfiles/tmux.conf           ~/.tmux.conf
   ln -sf ~/.dotfiles/zshrc               ~/.zshrc
 
+  sudo add-apt-repository -y ppa:neovim-ppa/stable
+  sudo apt -y update
+  sudo apt -y install neovim python-dev python-pip python3-dev python3-pip rustc
+
+  pip2 install pynvim
+  pip3 install pynvim
+
   mkdir -p ~/.config/nvim
-  ln -sh ~/.dotfiles/init.vim            ~/.config/nvim/init.vim
+  ln -sf ~/.dotfiles/init.vim            ~/.config/nvim/init.vim
 
   sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
   sudo update-alternatives --auto vi
@@ -40,6 +47,11 @@ if [[ ! -d ~/.dotfiles ]]; then
   sudo update-alternatives --auto vim
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
   sudo update-alternatives --auto editor
+
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  vi -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
 
   mkdir -p ~/.psql_history
 fi
@@ -243,9 +255,8 @@ bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
 # }}}
 
-if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
-  source ~/.config/exercism/exercism_completion.zsh
-fi
+export fpath=(~/.config/exercism/functions $fpath)
+autoload -U compinit && compinit
 
 path+=~/bin
 # }}}

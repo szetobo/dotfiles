@@ -32,6 +32,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'snoe/clj-refactor.nvim'
 call plug#end()
 
 color dracula
