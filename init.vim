@@ -42,6 +42,7 @@ set hlsearch
 set nowrap
 set cursorline
 set nostartofline
+set noswapfile
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2

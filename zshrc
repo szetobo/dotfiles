@@ -70,7 +70,6 @@ fi
 source ~/.zplug/init.zsh
 
 zplug "plugins/vi-mode", from:oh-my-zsh
-# zplug "plugins/chruby",  from:oh-my-zsh
 zplug "plugins/asdf",    from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/rails",   from:oh-my-zsh
@@ -133,6 +132,7 @@ compctl -W ~/vagrant -/ vm
 alias pa!='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb'
 alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
 alias kpa='[[ -f tmp/pids/puma.state ]] && bundle exec pumactl -S tmp/pids/puma.state stop'
+# alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
 
 alias mc='bundle exec mailcatcher --http-ip 0.0.0.0'
 alias kmc='pkill -fe mailcatcher'
