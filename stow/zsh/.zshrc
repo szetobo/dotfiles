@@ -1,120 +1,5 @@
-# shell environment initialization {{{
 
-case "$(uname -s)" in
-  Linux)
-    source /etc/os-release
-    ;;
-  Darwin)
-    NAME=Darwin
-esac
-
-case "$NAME" in
-  Ubuntu)
-    for tool (git-extras htop silversearcher-ag tree); do
-      [[ -z $(dpkg -l | grep $tool) ]] && sudo apt-get install -y $tool
-    done
-    ;;
-  Darwin)
-    for tool (git-extras htop the_silver_searcher neovim); do
-      [[ -z $(brew list | grep $tool) ]] && brew install $tool
-    done
-    ;;
-esac
-
-if [[ ! -d ~/.dotfiles ]]; then
-  git clone git://github.com/szetobo/dotfiles.git ~/.dotfiles
-
-  ln -sf ~/.dotfiles/gemrc               ~/.gemrc
-  ln -sf ~/.dotfiles/inputrc             ~/.inputrc
-  ln -sf ~/.dotfiles/psqlrc              ~/.psqlrc
-  ln -sf ~/.dotfiles/tigrc               ~/.tigrc
-  ln -sf ~/.dotfiles/tmux.conf           ~/.tmux.conf
-  ln -sf ~/.dotfiles/zshrc               ~/.zshrc
-
-  sudo add-apt-repository -y ppa:neovim-ppa/stable
-  sudo apt -y update
-  sudo apt -y install neovim python-dev python-pip python3-dev python3-pip rustc
-
-  pip2 install pynvim
-  pip3 install pynvim
-
-  mkdir -p ~/.config/nvim
-  ln -sf ~/.dotfiles/init.vim            ~/.config/nvim/init.vim
-
-  sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-  sudo update-alternatives --auto vi
-  sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-  sudo update-alternatives --auto vim
-  sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-  sudo update-alternatives --auto editor
-
-  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-  vi -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
-
-  mkdir -p ~/.psql_history
-fi
-
-# }}}
-
-
-# zplug {{{
-
-# install zplug, if necessary
-if [[ ! -d ~/.zplug ]]; then
-  export ZPLUG_HOME=~/.zplug
-  git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi
-
-source ~/.zplug/init.zsh
-
-zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/asdf",    from:oh-my-zsh
-zplug "plugins/bundler", from:oh-my-zsh
-zplug "plugins/rails",   from:oh-my-zsh
-
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "junegunn/fzf", as:command, hook-build:"./install --bin", use:"bin/{fzf-tmux,fzf}"
-
-zplug "zsh-users/zsh-autosuggestions", defer:3
-
-zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
-
-# zim {{{
-zplug "zimfw/zimfw", as:plugin, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/zimfw/zimfw ~/.zim"
-
-zmodules=(directory environment git git-info history input ssh utility \
-          prompt completion syntax-highlighting history-substring-search)
-
-zhighlighters=(main brackets pattern cursor root)
-
-zplug 'dracula/zsh', as:theme
-# zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
-
-# if [[ "$NAME" = "Ubuntu" ]]; then
-#   zprompt_theme='eriner'
-# else
-#   zprompt_theme='liquidprompt'
-# fi
-# }}}
-
-if ! zplug check --verbose; then
-  zplug install
-fi
-
-zplug load #--verbose
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
-
-source ~/.zplug/repos/junegunn/fzf/shell/key-bindings.zsh
-source ~/.zplug/repos/junegunn/fzf/shell/completion.zsh
-
-export FZF_COMPLETION_TRIGGER=';'
-export FZF_TMUX=1
-
-# }}}
-
+. ~/.zplugin
 
 # customization {{{
 
@@ -193,6 +78,8 @@ fixssh() {
 # }}}
 
 # aliases {{{
+alias g='git'
+
 alias px='ps aux'
 alias vt='vi -c :CtrlP'
 alias vl='vi -c :CtrlPMRU'
@@ -207,10 +94,10 @@ alias agiw='ag -i -w'
 alias agr='ag --ruby'
 alias agri='ag --ruby -i'
 
-alias -g G='| ag'
-alias -g P='| $PAGER'
-alias -g WC='| wc -l'
-alias -g RE='RESCUE=1'
+# alias -g G='| ag'
+# alias -g P='| $PAGER'
+# alias -g WC='| wc -l'
+# alias -g RE='RESCUE=1'
 
 alias -g HED='HANAMI_ENV=development'
 alias -g HEP='HANAMI_ENV=production'
@@ -243,11 +130,11 @@ export VISUAL=vi
 #}}}
 
 # key bindings {{{
-bindkey -M vicmd '^a' beginning-of-line
-bindkey -M vicmd '^e' end-of-line
+# bindkey -M vicmd '^a' beginning-of-line
+# bindkey -M vicmd '^e' end-of-line
 
-bindkey '^f' vi-forward-word
-bindkey '^b' vi-backward-word
+bindkey '^[f' vi-forward-word
+bindkey '^[b' vi-backward-word
 
 bindkey '^o' autosuggest-accept
 
@@ -258,5 +145,7 @@ bindkey '^n' history-substring-search-down
 export fpath=(~/.config/exercism/functions $fpath)
 autoload -U compinit && compinit
 
-path+=~/bin
+path+=~/bin:/snap/bin
 # }}}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,0 +1,51 @@
+
+[alias]
+  # Branch (b)
+  b  = branch
+  bc = checkout -b
+  bl = branch -vv
+  bL = branch --all -vv
+  bm = branch --move
+  bM = branch --move --force
+  bs = show-branch
+  bS = show-branch --all
+  ; bx = git-branch-delete-interactive
+  ; bX = git-branch-delete-interactive --force
+
+  # Commit (c)
+  c  = commit --verbose
+  ca = commit --verbose --all
+  cm = commit --message
+  co = checkout
+  cO = checkout --patch
+  cf = commit --amend --reuse-message HEAD
+  cF = commit --verbose --amend
+  cp = cherry-pick --ff
+  cP = cherry-pick --no-commit
+  cr = revert
+  cR = reset "HEAD^"
+  ; cs = show --pretty=format:"${_git_log_fuller_format}"
+  cS = commit -S
+  cv = verify-commit
+
+  # Conflict (C)
+  Cl = --no-pager diff --diff-filter=U --name-only
+  Ca = add --no-pager diff --diff-filter=U --name-only
+  Ce = mergetool --no-pager diff --diff-filter=U --name-only
+  Co = checkout --ours --
+  CO = checkout --ours -- --no-pager diff --diff-filter=U --name-only
+  Ct = checkout --theirs --
+  CT = checkout --theirs -- --no-pager diff --diff-filter=U --name-only 
+
+; [gui]
+;   fontdiff = -family Courier -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+
+; [color]
+;   diff = auto
+;   status = auto
+;   branch = auto
+;   interactive = auto
+
+; [tig]
+;   show-rev-graph = yes
+;   line-graphics = no

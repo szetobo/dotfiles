@@ -14,7 +14,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
@@ -22,8 +22,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'slim-template/vim-slim' ", {'for': ['slim']}
 Plug 'vim-ruby/vim-ruby' ", {'for': ['ruby', 'haml', 'eruby']}
-Plug 'janko-m/vim-test'
-Plug 'kassio/neoterm'
+" Plug 'janko-m/vim-test'
+" Plug 'kassio/neoterm'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
@@ -32,10 +32,9 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" Plug 'snoe/clj-refactor.nvim'
 call plug#end()
 
-color dracula
+silent! color dracula
 
 set hidden
 set hlsearch
