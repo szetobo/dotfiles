@@ -110,11 +110,6 @@ alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
 
-alias gws=gwS
-alias gba='gb -a'
-alias gbd='gwd master...'
-alias gbD='gwd --name-only master...'
-
 alias ha=hanami
 alias hac='ha console'
 alias had='ha destroy'
@@ -151,6 +146,30 @@ path+=~/bin:/snap/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 . "$HOME/.asdf/completions/asdf.bash"
+
+export _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
+export _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'
+export _git_log_oneline_medium_format='%C(bold yellow)%h%C(reset) %<(50,trunc)%s %C(bold blue)<%an> %C(reset)%C(cyan)(%ar)%C(auto)%d%C(reset)'
+
+git-current-branch() {
+  git symbolic-ref -q --short HEAD
+}
+
+git-branch-delete-interactive() {
+  local -a remotes
+  if (( ${*[(I)(-r|--remotes)]} )); then
+    remotes=(${^*:#-*})
+  else
+    remotes=(${(f)"$(command git rev-parse --abbrev-ref ${^*:#-*}@{u} 2>/dev/null)"}) || remotes=()
+  fi
+  if command git branch --delete ${@} && \
+      (( ${#remotes} )) && \
+      read -q "?Also delete remote branch(es) ${remotes} [y/N]? "; then
+    print
+    local remote
+    for remote (${remotes}) command git push ${remote%%/*} :${remote#*/}
+  fi
+}
 
 # HSTR configuration - add this to ~/.zshrc
 # alias hh=hstr                    # hh to be alias for hstr
