@@ -94,10 +94,10 @@ alias agiw='ag -i -w'
 alias agr='ag --ruby'
 alias agri='ag --ruby -i'
 
-# alias -g G='| ag'
-# alias -g P='| $PAGER'
-# alias -g WC='| wc -l'
-# alias -g RE='RESCUE=1'
+alias -g G='| ag'
+alias -g P='| $PAGER'
+alias -g WC='| wc -l'
+alias -g RE='RESCUE=1'
 
 alias -g HED='HANAMI_ENV=development'
 alias -g HEP='HANAMI_ENV=production'
@@ -125,8 +125,8 @@ export VISUAL=vi
 #}}}
 
 # key bindings {{{
-# bindkey -M vicmd '^a' beginning-of-line
-# bindkey -M vicmd '^e' end-of-line
+bindkey -M vicmd '^a' beginning-of-line
+bindkey -M vicmd '^e' end-of-line
 
 bindkey '^[f' vi-forward-word
 bindkey '^[b' vi-backward-word
