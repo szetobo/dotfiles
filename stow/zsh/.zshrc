@@ -150,6 +150,8 @@ path+=~/bin:/snap/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+. "$HOME/.asdf/completions/asdf.bash"
+
 # HSTR configuration - add this to ~/.zshrc
 # alias hh=hstr                    # hh to be alias for hstr
 # setopt histignorespace           # skip cmds w/ leading space from history
