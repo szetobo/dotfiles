@@ -140,7 +140,7 @@ bindkey '^n' history-substring-search-down
 export fpath=(~/.config/exercism/functions $fpath)
 autoload -U compinit && compinit
 
-path+=~/bin:/snap/bin
+export PATH=$PATH:~/bin:/snap/bin
 # }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -106,8 +106,8 @@
   pa  = "push --all"
   paa = "push --all && git push --tags"
   pt  = "push --tags"
-  pc  = "!f() { git push --set-upstream origin '$(git-current-branch)'; }; f"
-  pp  = "!f() { git pull origin '$(git-current-branch)' && git push origin '$(git-current-branch)'; }; f"
+  pc  = "!f() { git push --set-upstream origin $(git symbolic-ref -q --short HEAD); }; f"
+  pp  = "!f() { git pull origin $(git symbolic-ref -q --short HEAD) && git push origin $(git symbolic-ref -q --short HEAD); }; f"
 
   # Rebase (rb)
   rb  = "rebase"
