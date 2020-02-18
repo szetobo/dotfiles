@@ -80,6 +80,11 @@ fixssh() {
 # aliases {{{
 alias g='git'
 
+if [[ "`uname -s`" == "Darwin" ]]; then
+  alias vi='nvim'
+  alias vim='nvim'
+fi
+
 alias px='ps aux'
 alias vt='vi -c :CtrlP'
 alias vl='vi -c :CtrlPMRU'
@@ -104,8 +109,10 @@ alias -g HEP='HANAMI_ENV=production'
 alias -g HET='HANAMI_ENV=test'
 
 alias va=vagrant
-alias vsh='va ssh'
-alias vsf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
+# alias vsh='va ssh'
+# alias vsf='va ssh -- -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
+alias vsh='ssh gko.abagile.aws.kr'
+alias vsf='vsh -L 0.0.0.0:8080:localhost:80 -L 1080:localhost:1080'
 alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
@@ -145,7 +152,7 @@ export PATH=$PATH:~/bin:/snap/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. "$HOME/.asdf/completions/asdf.bash"
+[ -f ~/.asdf/asdf.bash ] && . "$HOME/.asdf/completions/asdf.bash"
 
 export _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 export _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'
