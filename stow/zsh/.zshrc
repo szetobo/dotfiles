@@ -1,4 +1,3 @@
-
 . ~/.zplugin
 
 # customization {{{
@@ -7,6 +6,7 @@
 p()  { cd ~/proj/$1;}
 h()  { cd ~/$1;}
 vm() { cd ~/vagrant/$1;}
+cdpath=(~ ~/proj)
 
 compctl -W ~/proj -/ p
 compctl -W ~ -/ h
@@ -19,7 +19,7 @@ alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bu
 alias kpa='[[ -f tmp/pids/puma.state ]] && bundle exec pumactl -S tmp/pids/puma.state stop'
 # alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
 
-alias mc='bundle exec mailcatcher --http-ip 0.0.0.0'
+alias mc='mailcatcher --http-ip 0.0.0.0'
 alias kmc='pkill -fe mailcatcher'
 alias sk='[[ -f config/sidekiq.yml ]] && bundle exec sidekiq -C $PWD/config/sidekiq.yml -d'
 alias ksk='pkill -fe sidekiq'
@@ -176,3 +176,5 @@ git-branch-delete-interactive() {
 # setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'

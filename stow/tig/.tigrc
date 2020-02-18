@@ -3,8 +3,8 @@ bind status C !git commit -v
 bind main + !git commit -v --amend
 bind main C !git checkout -B tig %(commit)
 
-set line-graphics  = false
-# set line-graphics  = utf-8
+# set line-graphics  = false
+set line-graphics  = utf-8
 # set focus-child    = false
 set wrap-search    = true
 # set diff-highlight = true

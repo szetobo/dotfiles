@@ -9,12 +9,15 @@ Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
 Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'arcticicestudio/nord-vim'
 Plug 'Shougo/denite.nvim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
@@ -22,6 +25,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'slim-template/vim-slim' ", {'for': ['slim']}
 Plug 'vim-ruby/vim-ruby' ", {'for': ['ruby', 'haml', 'eruby']}
+Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'janko-m/vim-test'
 " Plug 'kassio/neoterm'
 Plug 'tpope/vim-salve'
@@ -34,7 +38,8 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 call plug#end()
 
-silent! color dracula
+" silent! color dracula
+silent! color nord
 
 set hidden
 set hlsearch
@@ -54,6 +59,17 @@ set regexpengine=1
 set scrolloff=1
 set sidescrolloff=5
 
+set undofile
+set undolevels=5000
+
+set matchpairs+=<:>
+
+" return to last edit position when opening files
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
 autocmd BufRead,BufNewFile *.thor set filetype=ruby
 
 autocmd FileType markdown setlocal wrap
@@ -64,12 +80,14 @@ autocmd FileType eruby.yaml setlocal commentstring=#\ %s
 let g:gitgutter_enabled=1
 let g:indentLine_enabled=1
 let g:NERDTreeQuitOnOpen=1
-let g:ctrlp_cmd='CtrlPMixed'
-let g:ctrlp_match_window='order:ttb,max:20'
+" let g:ctrlp_cmd='CtrlPMixed'
+" let g:ctrlp_match_window='order:ttb,max:20'
 set wildignore+=*/.git/*,*/node_modules/*
 let g:deoplete#enable_at_startup=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
+let g:airline_theme='nord'
+let g:airline_powerline_fonts=1
 let test#strategy='dispatch'
 let g:dispatch_quickfix_height=20
 " let g:neoterm_default_mod='belowright'
@@ -125,7 +143,12 @@ inoremap <right> <nop>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 
-nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>sa :Ag<CR>
+nnoremap <leader>sb :Buffers<CR>
+nnoremap <leader>sc :Commits<CR>
+nnoremap <leader>sf :Files<CR>
+nnoremap <leader>sl :Lines<CR>
 
 " nnoremap <leader>s  :set nolist! nolist?<CR>
 " nnoremap <leader>n  :set number! number?<CR>

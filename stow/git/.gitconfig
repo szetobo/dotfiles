@@ -1,8 +1,8 @@
 [core]
-  pager = less
+  pager = "less -FRSX"
 
-[pager]
-  branch = false
+[user]
+  useConfigOnly = true
 
 [alias]
   # Branch (b)
@@ -51,6 +51,10 @@
   du = "ls-files --other --exclude-standard"
   dk = "ls-files --killed"
   di = "status --porcelain --short --ignored | sed -n 's/^!! //p'"
+
+  # Edit (e)
+  ed  = !$EDITOR $(git status --porcelain --short | awk '{print $2}')
+  edm = !$EDITOR -- $(git diff --no-ext-diff --name-only master...)
 
   # Fetch (f)
   f  = "fetch"
