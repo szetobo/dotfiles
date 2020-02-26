@@ -43,8 +43,8 @@ $if mode=vi
   Control-k: kill-line
   Control-w: backward-kill-word
   "^[d": forward-kill-word
-  Control-n: history-substring-search-down
-  Control-p: history-substring-search-up
-  Control-o: autosuggest-accept
+  # Control-n: history-substring-search-down
+  # Control-p: history-substring-search-up
+  # Control-o: autosuggest-accept
 
 $endif
