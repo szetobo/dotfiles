@@ -1,3 +1,6 @@
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
+
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -31,7 +34,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fireplace'
+" Plug 'tpope/vim-fireplace'
+Plug 'Olical/conjure', {'tag': 'v2.1.2', 'do': 'bin/compile'}
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'guns/vim-sexp'
@@ -75,6 +79,9 @@ autocmd BufRead,BufNewFile *.thor set filetype=ruby
 autocmd FileType markdown setlocal wrap
 autocmd FileType eruby.yaml setlocal commentstring=#\ %s
 
+autocmd FileType clojure set iskeyword-=.
+autocmd FileType clojure set iskeyword-=/
+
 " let g:python_host_prog = '/usr/bin/python'
 " let g:python3_host_prog = '/usr/bin/python3'
 let g:gitgutter_enabled=1
@@ -115,6 +122,10 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+let g:conjure_map_prefix=","
+let g:conjure_log_direction="horizontal"
+let g:conjure_log_size_small=15
 
 let mapleader=","
 
