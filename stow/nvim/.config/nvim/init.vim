@@ -1,3 +1,7 @@
+let mapleader=","
+let maplocalleader=","
+" let g:conjure#mapping#prefix=","
+
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
@@ -35,7 +39,9 @@ Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-fireplace'
-Plug 'Olical/conjure', {'tag': 'v2.1.2', 'do': 'bin/compile'}
+" Plug 'Olical/conjure', {'tag': 'v2.1.2', 'do': 'bin/compile'}
+Plug 'Olical/conjure', {'tag': 'v4.0.0'}
+Plug 'clojure-vim/vim-jack-in'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'guns/vim-sexp'
@@ -123,12 +129,6 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-let g:conjure_map_prefix=","
-let g:conjure_log_direction="horizontal"
-let g:conjure_log_size_small=15
-
-let mapleader=","
-
 nnoremap ' `
 nnoremap ` '
 inoremap jj <esc>
@@ -153,6 +153,8 @@ inoremap <right> <nop>
 
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
+
+nnoremap <leader>bp obinding.pry<esc>
 
 " nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>sa :Ag<CR>

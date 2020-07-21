@@ -24,8 +24,8 @@ alias kmc='pkill -fe mailcatcher'
 alias sk='[[ -f config/sidekiq.yml ]] && bundle exec sidekiq -C $PWD/config/sidekiq.yml -d'
 alias ksk='pkill -fe sidekiq'
 
-pairg() { ssh -t $1 ssh -o 'StrictHostKeyChecking=no' -o 'UserKnownHostsFile=/dev/null' -p $2 -t vagrant@localhost 'tmux attach' }
-pairh() { ssh -S none -o 'ExitOnForwardFailure=yes' -R $2\:localhost:22222 -t $1 'watch -en 10 who' }
+pairg() { ssh -t $1 ssh -o 'StrictHostKeyChecking=no' -o 'UserKnownHostsFile=/dev/null' -p $2 -t ${3:-vagrant}@localhost 'tmux attach' }
+pairh() { ssh -S none -o 'ExitOnForwardFailure=yes' -R $2\:localhost:22 -t $1 'watch -en 10 who' }
 
 cop() {
   local exts=('rb,thor,jbuilder')
@@ -99,6 +99,9 @@ alias agiw='ag -i -w'
 alias agr='ag --ruby'
 alias agri='ag --ruby -i'
 
+alias rgi='rg -i'
+alias rgiw='rg -iw'
+
 alias -g G='| ag'
 alias -g P='| $PAGER'
 alias -g WC='| wc -l'
@@ -124,6 +127,9 @@ alias hag='ha generate'
 alias ham='ha generate migration'
 alias has='ha server'
 alias har='ha routes'
+
+alias zshrc='vi ~/.zshrc'
+alias vimrc='vi ~/.config/nvim/init.vim'
 # }}}
 
 # environment variables {{{
@@ -156,7 +162,7 @@ export PATH=$PATH:~/bin:/snap/bin
 
 export _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 export _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'
-export _git_log_oneline_medium_format='%C(bold yellow)%h%C(reset) %<(50,trunc)%s %C(bold blue)<%an> %C(reset)%C(cyan)(%ar)%C(auto)%d%C(reset)'
+export _git_log_oneline_medium_format='%C(bold yellow)%h%C(reset) %<(50,trunc)%s %C(bold blue)<%an> %C(reset)%C(cyan)(%ar)%C(auto)%ad%C(reset)'
 
 git-current-branch() {
   git symbolic-ref -q --short HEAD
