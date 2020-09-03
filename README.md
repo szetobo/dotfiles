@@ -7,11 +7,6 @@ Ubuntu/Debian & ArchLinux), but should also working for Mac OS/X as well.
 
 ## Installation
 
-    curl -L https://github.com/szetobo/dotfiles/raw/master/zshrc > ~/.zshrc
-
-## Bootstrap
-
-To have a complete environment installed
-
-    ~/.dotfiles/bootstrap.sh
+    git clone https://github.com/szetobo/dotfiles ~/.dotfiles
+    ~/.dotfiles/setup.zsh
 
