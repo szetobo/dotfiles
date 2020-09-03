@@ -1,9 +1,15 @@
 let mapleader=","
-let maplocalleader=","
+let maplocalleader=" "
 " let g:conjure#mapping#prefix=","
 
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
+
+let g:nord_underline=1
+
+let g:ale_linters = {
+  \ 'clojure': ['clj-kondo']
+  \}
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
@@ -22,7 +28,7 @@ Plug 'Shougo/denite.nvim'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'Yggdroot/indentLine'
 Plug 'michaeljsmith/vim-indent-object'
@@ -79,6 +85,8 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
+
+autocmd BufRead,BufNewFile *.yml setlocal spell
 
 autocmd BufRead,BufNewFile *.thor set filetype=ruby
 
