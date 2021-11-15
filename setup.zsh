@@ -4,7 +4,7 @@ mkdir -p ~/.psql_history
 
 if [[ "`uname -s`" == "Darwin" ]]; then
 
-  brew install asdf stow fzf nvim
+  brew install asdf stow fzf nvim bat fd autojump lazygit exa just
 
   cd ~/.dotfiles/stow
   for s in *; do stow -t ~ $s; done

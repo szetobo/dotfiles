@@ -2,6 +2,10 @@
 
 # customization {{{
 
+if [[ "`uname -s`" == "Darwin" ]]; then
+  export LANG=C
+fi
+
 # directory shortcut {{{
 p()  { cd ~/proj/$1;}
 h()  { cd ~/$1;}
@@ -83,7 +87,13 @@ alias g='git'
 if [[ "`uname -s`" == "Darwin" ]]; then
   alias vi='nvim'
   alias vim='nvim'
+  # if [ `whence gls` > /dev/null ]; then
+  #   alias ls='gls --group-directories-first --color=auto'
+  # fi
 fi
+
+alias ls='exa --group-directories-first'
+alias l='ls -la'
 
 alias px='ps aux'
 alias vt='vi -c :CtrlP'
@@ -102,14 +112,16 @@ alias agri='ag --ruby -i'
 alias rgi='rg -i'
 alias rgiw='rg -iw'
 
-alias -g G='| ag'
+alias -g G='| rg'
 alias -g P='| $PAGER'
 alias -g WC='| wc -l'
 alias -g RE='RESCUE=1'
 
-alias -g HED='HANAMI_ENV=development'
-alias -g HEP='HANAMI_ENV=production'
-alias -g HET='HANAMI_ENV=test'
+alias rc='bin/rails console'
+alias rr='bin/rake routes'
+alias rdm='bin/rake db:migrate'
+alias rdr='bin/rake db:rollback'
+alias rdms='bin/rake db:migrate:status'
 
 alias va=vagrant
 # alias vsh='va ssh'
@@ -120,21 +132,22 @@ alias vup='va up'
 alias vsup='va suspend'
 alias vhalt='va halt'
 
-alias ha=hanami
-alias hac='ha console'
-alias had='ha destroy'
-alias hag='ha generate'
-alias ham='ha generate migration'
-alias has='ha server'
-alias har='ha routes'
-
 alias zshrc='vi ~/.zshrc'
 alias vimrc='vi ~/.config/nvim/init.vim'
+
+alias cat=bat
+
+alias apb=ansible-playbook
 # }}}
 
 # environment variables {{{
-export EDITOR=vi
-export VISUAL=vi
+if [ `whence nvim` > /dev/null ]; then
+  export EDITOR=nvim
+  export VISUAL=nvim
+else
+  export EDITOR=vi
+  export VISUAL=vi
+fi
 #}}}
 
 # key bindings {{{
@@ -150,15 +163,19 @@ bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
 # }}}
 
-export fpath=(~/.config/exercism/functions $fpath)
-autoload -U compinit && compinit
+# export fpath=(~/.config/exercism/functions $fpath)
+# autoload -U compinit && compinit
 
-export PATH=$PATH:~/bin:/snap/bin
+export PATH=$PATH:/usr/local/opt/ansible@2.9/bin:/usr/local/opt/erlang@23/bin:/usr/local/sbin:~/bin:/snap/bin
 # }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/.asdf/asdf.bash ] && . "$HOME/.asdf/completions/asdf.bash"
+[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh && source "$HOME/.asdf/completions/asdf.bash"
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+[ -f ~/.ssh/id_pair ] && ssh-add ~/.ssh/id_pair 2> /dev/null
 
 export _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 export _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'
@@ -190,4 +207,6 @@ git-branch-delete-interactive() {
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

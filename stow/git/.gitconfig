@@ -4,6 +4,9 @@
 [user]
   useConfigOnly = true
 
+[pull]
+  rebase = false
+
 [alias]
   # Branch (b)
   b   = "branch"

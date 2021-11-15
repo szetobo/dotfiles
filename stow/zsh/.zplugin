@@ -16,9 +16,9 @@ if ! zgen saved; then
   zgen oh-my-zsh
   zgen oh-my-zsh "plugins/vi-mode"
   # zgen oh-my-zsh "plugins/asdf"
-  zgen oh-my-zsh "plugins/bundler"
-  zgen oh-my-zsh "plugins/rails"
-  zgen oh-my-zsh "plugins/ansible"
+  # zgen oh-my-zsh "plugins/bundler"
+  # zgen oh-my-zsh "plugins/rails"
+  # zgen oh-my-zsh "plugins/ansible"
   zgen oh-my-zsh "plugins/docker"
 
   # zgen load "dracula/zsh"
