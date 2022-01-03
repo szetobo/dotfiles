@@ -29,7 +29,7 @@ if ! zgen saved; then
   zgen load "romkatv/powerlevel10k" powerlevel10k
 
   zgen load "zimfw/environment"
-  zgen load "zimfw/directory"
+  # zgen load "zimfw/directory"
   zgen load "zimfw/input"
   zgen load "zimfw/utility"
   # zgen load "zimfw/git"

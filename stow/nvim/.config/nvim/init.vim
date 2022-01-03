@@ -1,8 +1,8 @@
 let mapleader=","
 let maplocalleader=" "
 
-let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/usr/local/bin/python3'
+" let g:python_host_prog='/usr/bin/python'
+" let g:python3_host_prog='/usr/local/bin/python3'
 
 let g:nord_underline=1
 let g:nord_bold=1
@@ -40,7 +40,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace'
 Plug 'Olical/conjure', {'tag': 'v4.23.0'}
 " Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'eraserhd/parinfer-rust', {'commit': '5def45e1cbbc4f690fe70e44c786ad6bf9437476', 'do': 'cargo build --release'}
+" Plug 'eraserhd/parinfer-rust', {'commit': '5def45e1cbbc4f690fe70e44c786ad6bf9437476', 'do': 'cargo build --release'}
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Plug 'clojure-vim/clojure.vim'
