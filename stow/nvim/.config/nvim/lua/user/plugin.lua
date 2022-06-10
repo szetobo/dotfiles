@@ -58,13 +58,12 @@ return packer.startup(function(use)
   use "tpope/vim-fugitive" -- Git wrapper
   use "AndrewRadev/splitjoin.vim" -- Switch between single & multi line forms of code
   use "junegunn/vim-easy-align" -- Alignment plugin
-  use "Yggdroot/indentLine" -- Display indention levels with thin vertical lines
+  use "lukas-reineke/indent-blankline.nvim" -- Display indention levels with thin vertical lines
   use "michaeljsmith/vim-indent-object" -- Define new text object representing same ident level
   use "numToStr/Comment.nvim" -- Easily comment stuff
 
   -- Colorschemes
   use "shaunsingh/nord.nvim"
-  use "andersevenrud/nordic.nvim"
   use "folke/tokyonight.nvim"
   use "kyazdani42/nvim-web-devicons" -- Filetype glyphs (icons) for various plugins
   use "nvim-lualine/lualine.nvim" -- Statusline plugin

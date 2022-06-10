@@ -8,6 +8,7 @@ local options = {
   grepprg = "rg --vimgrep --smart-case --follow",
   hlsearch = true,
   ignorecase = true,
+  list = true,
   number = true,
   scrolloff = 5,
   shiftwidth = 2,
@@ -31,7 +32,6 @@ for k, v in pairs(options) do
 end
 
 vim.g.tokyonight_colors = { border = "orange" }
-
 vim.g.tokyonight_style = "strom"
 vim.cmd "colorscheme tokyonight"
 
@@ -61,6 +61,33 @@ require("bufferline").setup({
 
 require("Comment").setup({})
 require("Comment.ft").set("clojure", ";;%s")
+
+require("indent_blankline").setup({
+  show_current_context = true,
+  show_current_context_start = true,
+  show_end_of_line = true,
+  space_char_blankline = " ",
+  context_patterns = {
+    "class",
+    "^func",
+    "method",
+    "^if",
+    "while",
+    "for",
+    "with",
+    "try",
+    "except",
+    "arguments",
+    "argument_list",
+    "object",
+    "dictionary",
+    "element",
+    "table",
+    "tuple",
+    "do_block",
+    "lit$",
+  },
+})
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "clojure", "fennel", "lua", "ruby", "rust", "yaml", "markdown" },
@@ -154,6 +181,8 @@ keymap("v", "p", "\"_dP", km_opts)
 
 -- Miscs
 vim.opt.matchpairs:append "<:>"
+vim.opt.listchars:append "space:⋅"
+vim.opt.listchars:append "eol:↴"
 
 vim.cmd [[
   augroup lisp_filetype
