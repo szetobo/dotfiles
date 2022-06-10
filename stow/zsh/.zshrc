@@ -86,7 +86,8 @@ alias g='git'
 
 if [[ "`uname -s`" == "Darwin" ]]; then
   alias vi='nvim'
-  alias vim='nvim'
+  alias vim='vi'
+  alias nvi='XDG_CONFIG_HOME=~/.dev/config XDG_DATA_HOME=~/.dev/data XDG_CACHE_HOME=~/.dev/cache nvim'
   # if [ `whence gls` > /dev/null ]; then
   #   alias ls='gls --group-directories-first --color=auto'
   # fi
@@ -133,7 +134,7 @@ alias vsup='va suspend'
 alias vhalt='va halt'
 
 alias zshrc='vi ~/.zshrc'
-alias vimrc='vi ~/.config/nvim/init.vim'
+alias vimrc='vi ~/.config/nvim/init.lua'
 
 alias cat=bat
 
@@ -172,6 +173,7 @@ bindkey '^n' history-substring-search-down
 if [[ "`uname -s`" == "Darwin" ]]; then
   [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
   [ -f $(brew --prefix asdf)/libexec/asdf.sh ] && . $(brew --prefix asdf)/libexec/asdf.sh
+  export HOMEBREW_NO_AUTO_UPDATE=1
 else
   [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh && source "$HOME/.asdf/completions/asdf.bash"
   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -180,6 +182,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.ssh/id_pair ] && ssh-add ~/.ssh/id_pair 2> /dev/null
+[ -f ~/.ssh/abagile-dev.pem ] && ssh-add ~/.ssh/abagile-dev.pem 2> /dev/null
 
 export _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 export _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'

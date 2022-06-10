@@ -2,9 +2,11 @@
 
 if [[ "`uname -s`" == "Darwin" ]]; then
 
-  brew install asdf stow fzf nvim tig tmux httpie htop bat fd autojump lazygit exa just
+  brew install asdf stow fzf nvim ripgrep tig tmux httpie htop bat fd autojump lazygit exa just
 
   ln -sf $(brew --prefix)/opt/fzf ~/.fzf
+
+  mkdir -p ~/.psql_history
 
   cd ~/.dotfiles/stow
   for s in *; do stow -t ~ $s; done
