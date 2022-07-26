@@ -2,7 +2,7 @@
 
 if [[ "`uname -s`" == "Darwin" ]]; then
 
-  brew install asdf stow fzf nvim ripgrep tig tmux httpie htop bat fd autojump lazygit exa just
+  brew install asdf stow fzf nvim ripgrep tig tmux httpie htop bat fd autojump lazygit exa just gnu-sed
 
   ln -sf $(brew --prefix)/opt/fzf ~/.fzf
 

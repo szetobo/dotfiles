@@ -77,10 +77,10 @@ end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "sumneko_lua", "clojure_lsp", "solargraph" }
+local servers = { "sumneko_lua", "clojure_lsp", "solargraph", "tsserver" }
 
 require("nvim-lsp-installer").setup {
-  ensure_installed = { "sumneko_lua" }
+  ensure_installed = { "sumneko_lua", "tsserver" }
 }
 
 for _, server in pairs(servers) do

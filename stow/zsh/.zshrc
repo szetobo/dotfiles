@@ -93,6 +93,9 @@ if [[ "`uname -s`" == "Darwin" ]]; then
   # fi
 fi
 
+# alias emacs='emacsclient -t -a "emacs"'
+alias emacs='open -a /Applications/Emacs.app'
+
 alias ls='exa --group-directories-first'
 alias l='ls -la'
 

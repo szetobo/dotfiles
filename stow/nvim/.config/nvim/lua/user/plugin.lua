@@ -100,10 +100,11 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
   -- Rails
-  use {
-    "tpope/vim-rails",
-    ft = { "ruby", "haml", "eruby", "coffee" },
-  }
+  use "tpope/vim-rails"
+  -- use {
+  --   "tpope/vim-rails",
+  --   ft = { "ruby", "haml", "eruby", "coffee" },
+  -- }
 
   -- Clojure
   use 'Olical/conjure'
@@ -113,6 +114,9 @@ return packer.startup(function(use)
     "eraserhd/parinfer-rust",
     run = "cargo build --release",
   }
+
+  -- ABAgile
+  use 'ssh://git@gitlab.abagile.com:7788/abagile/vim-abagile.git'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
