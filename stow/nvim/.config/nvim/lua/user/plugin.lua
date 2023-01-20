@@ -63,7 +63,10 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Easily comment stuff
 
   -- Colorschemes
-  use "shaunsingh/nord.nvim"
+  use {
+    "shaunsingh/nord.nvim",
+    commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
+  }
   use "folke/tokyonight.nvim"
   use "kyazdani42/nvim-web-devicons" -- Filetype glyphs (icons) for various plugins
   use "nvim-lualine/lualine.nvim" -- Statusline plugin
@@ -114,6 +117,9 @@ return packer.startup(function(use)
     "eraserhd/parinfer-rust",
     run = "cargo build --release",
   }
+
+  -- Racket
+  use 'wlangstroth/vim-racket'
 
   -- ABAgile
   use 'ssh://git@gitlab.abagile.com:7788/abagile/vim-abagile.git'

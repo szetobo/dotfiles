@@ -35,9 +35,14 @@ vim.opt.matchpairs:append "<:>"
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 
-vim.g.tokyonight_colors = { border = "orange" }
-vim.g.tokyonight_style = "strom"
+require("tokyonight").setup({
+  style = "moon",
+  on_colors = function(colors)
+    colors.border = colors.orange
+  end
+})
 vim.cmd "colorscheme tokyonight"
+-- vim.cmd "colorscheme nord"
 
 vim.g.NERDTreeQuitOnOpen          = 1
 vim.g.webdevicons_enable_nerdtree = 1
@@ -67,11 +72,12 @@ require("lualine").setup({
 })
 
 require("bufferline").setup({
-  options = { numbers = "buffer_id" },
-  offsets = {
-    { filetype = "nerdtree", text = "", padding = 1 },
-    { filetype = "NvimTree", text = "", padding = 1 },
-  },
+  options = { numbers = "buffer_id",
+              offsets = {
+                { filetype = "nerdtree", text = "", padding = 1 },
+                { filetype = "NvimTree", text = "", padding = 1 },
+              },
+            },
 })
 
 require("Comment").setup({})
@@ -105,9 +111,9 @@ require("indent_blankline").setup({
 })
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "clojure", "fennel", "lua", "ruby", "rust", "yaml", "markdown" },
-  highlight        = { enable = true },
-  indent           = { enable = true, disable = { "yaml" } },
+  ensure_installed = { "clojure", "fennel", "lua", "racket", "ruby", "rust", "yaml", "markdown" },
+  highlight        = { enable = true, additional_vim_regex_highlighting = true },
+  indent           = { enable = true, disable = { "ruby", "yaml" } },
 })
 
 local telescope = require("telescope")
@@ -209,5 +215,11 @@ vim.cmd [[
     autocmd FileType clojure,fennel setlocal iskeyword-=/
     autocmd FileType clojure,fennel setlocal formatoptions+=or
     autocmd FileType clojure,fennel setlocal lispwords+=are,comment,cond,do,try
+  augroup end
+  augroup lang_syntax
+    autocmd!
+    autocmd BufNewFile,BufRead *.rb   set syntax=ruby
+    autocmd BufNewFile,BufRead *.clj  set syntax=clojure
+    autocmd BufNewFile,BufRead *.cljs set syntax=clojure
   augroup end
 ]]

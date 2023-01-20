@@ -19,7 +19,7 @@ compctl -W ~/vagrant -/ vm
 
 # development shortcut {{{
 alias pa!='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb'
-alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d'
+alias pa='[[ -f config/puma.rb ]] && RAILS_RELATIVE_URL_ROOT=/`basename $PWD` bundle exec puma -C $PWD/config/puma.rb -d --control-url tcp://127.0.0.1:9293 --control-token foo'
 alias kpa='[[ -f tmp/pids/puma.state ]] && bundle exec pumactl -S tmp/pids/puma.state stop'
 # alias kpa='[[ -f tmp/pids/puma.pid ]] && kill `cat tmp/pids/puma.pid`'
 
@@ -83,6 +83,7 @@ fixssh() {
 
 # aliases {{{
 alias g='git'
+alias lg='lazygit'
 
 if [[ "`uname -s`" == "Darwin" ]]; then
   alias vi='nvim'
